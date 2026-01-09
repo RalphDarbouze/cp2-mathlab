@@ -198,16 +198,16 @@
         }
 
         .currency-img {
-            width: 100px;
-            height: 100px;
+            width: 120px;
+            height: 60px;
             background-color: #f0f0f0;
-            border-radius: 50%;
+            border-radius: 5px;
             display: flex;
             align-items: center;
             justify-content: center;
             margin-bottom: 10px;
             overflow: hidden;
-            border: 3px solid #ddd;
+            border: 2px solid #ddd;
         }
 
         .currency-img img {
@@ -220,11 +220,13 @@
             font-weight: bold;
             text-align: center;
             margin-top: 5px;
+            font-size: 0.9rem;
         }
 
         .currency-value {
             color: var(--primary);
             font-size: 0.9rem;
+            font-weight: bold;
         }
 
         .task-section {
@@ -434,8 +436,8 @@
         }
 
         .task-image {
-            max-width: 200px;
-            max-height: 150px;
+            max-width: 250px;
+            max-height: 120px;
             margin: 15px auto;
             display: block;
             border-radius: var(--border-radius);
@@ -450,11 +452,37 @@
         }
 
         .image-option img {
-            width: 80px;
-            height: 80px;
+            width: 100px;
+            height: 50px;
             object-fit: cover;
             border-radius: var(--border-radius);
             border: 2px solid #ddd;
+        }
+
+        .money-images-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .money-image-container {
+            text-align: center;
+        }
+
+        .money-image-container img {
+            width: 100px;
+            height: 50px;
+            border-radius: 5px;
+            border: 2px solid #ddd;
+            margin-bottom: 5px;
+        }
+
+        .money-label {
+            font-size: 0.8rem;
+            color: var(--primary);
+            font-weight: bold;
         }
 
         /* Responsive adjustments */
@@ -486,8 +514,8 @@
             }
             
             .currency-img {
-                width: 80px;
-                height: 80px;
+                width: 100px;
+                height: 50px;
             }
         }
 
@@ -510,8 +538,8 @@
             }
             
             .currency-img {
-                width: 70px;
-                height: 70px;
+                width: 90px;
+                height: 45px;
             }
         }
 
@@ -542,6 +570,20 @@
             margin: 5px 0;
             font-size: 0.9rem;
         }
+
+        .all-money-display {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: var(--border-radius);
+        }
+
+        .all-money-title {
+            text-align: center;
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -566,31 +608,63 @@
                         <p>• Pièces: 5, 10, 20, 50 centimes, 1 et 5 gourdes</p>
                     </div>
                     
+                    <div class="all-money-display">
+                        <div class="all-money-title">Les Billets Haïtiens</div>
+                        <div class="money-images-row">
+                            <div class="money-image-container">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Haitian_10_gourdes_%28obverse%29.jpg/320px-Haitian_10_gourdes_%28obverse%29.jpg" alt="10 gourdes">
+                                <div class="money-label">10 Gourdes</div>
+                            </div>
+                            <div class="money-image-container">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Haitian_25_gourdes_%28obverse%29.jpg/320px-Haitian_25_gourdes_%28obverse%29.jpg" alt="25 gourdes">
+                                <div class="money-label">25 Gourdes</div>
+                            </div>
+                            <div class="money-image-container">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Haitian_50_gourdes_%28obverse%29.jpg/320px-Haitian_50_gourdes_%28obverse%29.jpg" alt="50 gourdes">
+                                <div class="money-label">50 Gourdes</div>
+                            </div>
+                        </div>
+                        <div class="money-images-row">
+                            <div class="money-image-container">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Haitian_100_gourdes_%28obverse%29.jpg/320px-Haitian_100_gourdes_%28obverse%29.jpg" alt="100 gourdes">
+                                <div class="money-label">100 Gourdes</div>
+                            </div>
+                            <div class="money-image-container">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Haitian_250_gourdes_%28obverse%29.jpg/320px-Haitian_250_gourdes_%28obverse%29.jpg" alt="250 gourdes">
+                                <div class="money-label">250 Gourdes</div>
+                            </div>
+                            <div class="money-image-container">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Haitian_500_gourdes_%28obverse%29.jpg/320px-Haitian_500_gourdes_%28obverse%29.jpg" alt="500 gourdes">
+                                <div class="money-label">500 Gourdes</div>
+                            </div>
+                        </div>
+                    </div>
+                    
                     <div class="currency-display">
                         <div class="currency-item" data-value="10" data-name="Dix gourdes" data-audio="10gourdes">
                             <div class="currency-img">
-                                <img src="https://via.placeholder.com/100x100/00209F/FFFFFF?text=10+G" alt="10 gourdes" id="currency10">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Haitian_10_gourdes_%28obverse%29.jpg/320px-Haitian_10_gourdes_%28obverse%29.jpg" alt="10 gourdes">
                             </div>
                             <div class="currency-name">Dix gourdes</div>
                             <div class="currency-value">HTG 10</div>
                         </div>
                         <div class="currency-item" data-value="50" data-name="Cinquante gourdes" data-audio="50gourdes">
                             <div class="currency-img">
-                                <img src="https://via.placeholder.com/100x100/00209F/FFFFFF?text=50+G" alt="50 gourdes" id="currency50">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Haitian_50_gourdes_%28obverse%29.jpg/320px-Haitian_50_gourdes_%28obverse%29.jpg" alt="50 gourdes">
                             </div>
                             <div class="currency-name">Cinquante gourdes</div>
                             <div class="currency-value">HTG 50</div>
                         </div>
                         <div class="currency-item" data-value="100" data-name="Cent gourdes" data-audio="100gourdes">
                             <div class="currency-img">
-                                <img src="https://via.placeholder.com/100x100/C00/FFFFFF?text=100+G" alt="100 gourdes" id="currency100">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Haitian_100_gourdes_%28obverse%29.jpg/320px-Haitian_100_gourdes_%28obverse%29.jpg" alt="100 gourdes">
                             </div>
                             <div class="currency-name">Cent gourdes</div>
                             <div class="currency-value">HTG 100</div>
                         </div>
                         <div class="currency-item" data-value="500" data-name="Cinq cents gourdes" data-audio="500gourdes">
                             <div class="currency-img">
-                                <img src="https://via.placeholder.com/100x100/C00/FFFFFF?text=500+G" alt="500 gourdes" id="currency500">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Haitian_500_gourdes_%28obverse%29.jpg/320px-Haitian_500_gourdes_%28obverse%29.jpg" alt="500 gourdes">
                             </div>
                             <div class="currency-name">Cinq cents gourdes</div>
                             <div class="currency-value">HTG 500</div>
@@ -688,6 +762,23 @@
     <audio id="audioIncorrect" preload="auto">
         <source src="https://assets.mixkit.co/sfx/preview/mixkit-wrong-answer-fail-notification-946.mp3" type="audio/mpeg">
     </audio>
+    
+    <!-- Additional audio for Haitian money explanations -->
+    <audio id="audio10gourdes" preload="auto">
+        <source src="https://assets.mixkit.co/sfx/preview/mixkit-cash-register-bell-1096.mp3" type="audio/mpeg">
+    </audio>
+    
+    <audio id="audio50gourdes" preload="auto">
+        <source src="https://assets.mixkit.co/sfx/preview/mixkit-cash-register-bell-1096.mp3" type="audio/mpeg">
+    </audio>
+    
+    <audio id="audio100gourdes" preload="auto">
+        <source src="https://assets.mixkit.co/sfx/preview/mixkit-cash-register-bell-1096.mp3" type="audio/mpeg">
+    </audio>
+    
+    <audio id="audio500gourdes" preload="auto">
+        <source src="https://assets.mixkit.co/sfx/preview/mixkit-cash-register-bell-1096.mp3" type="audio/mpeg">
+    </audio>
 
     <script>
         // App state
@@ -701,22 +792,27 @@
             selectedCell: null
         };
 
-        // Initialize tasks with images and sounds
-        function initializeTasks() {
-            // Image URLs for tasks (using placeholder images that will work on GitHub)
-            const imageUrls = {
-                currency10: "https://via.placeholder.com/150x80/00209F/FFFFFF?text=10+Gourdes",
-                currency25: "https://via.placeholder.com/150x80/00209F/FFFFFF?text=25+Gourdes",
-                currency50: "https://via.placeholder.com/150x80/00209F/FFFFFF?text=50+Gourdes",
-                currency100: "https://via.placeholder.com/150x80/C00/FFFFFF?text=100+Gourdes",
-                currency250: "https://via.placeholder.com/150x80/C00/FFFFFF?text=250+Gourdes",
-                currency500: "https://via.placeholder.com/150x80/008000/FFFFFF?text=500+Gourdes",
-                grid1: "https://via.placeholder.com/150x150/CCCCCC/000000?text=Quadrillage",
-                grid2: "https://via.placeholder.com/150x150/CCCCCC/000000?text=(2,3)",
-                grid3: "https://via.placeholder.com/150x150/CCCCCC/000000?text=(4,1)",
-                grid4: "https://via.placeholder.com/150x150/CCCCCC/000000?text=(5,5)"
-            };
+        // Real Haitian money image URLs from Wikimedia
+        const moneyImages = {
+            "10gourdes": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Haitian_10_gourdes_%28obverse%29.jpg/320px-Haitian_10_gourdes_%28obverse%29.jpg",
+            "25gourdes": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Haitian_25_gourdes_%28obverse%29.jpg/320px-Haitian_25_gourdes_%28obverse%29.jpg",
+            "50gourdes": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Haitian_50_gourdes_%28obverse%29.jpg/320px-Haitian_50_gourdes_%28obverse%29.jpg",
+            "100gourdes": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Haitian_100_gourdes_%28obverse%29.jpg/320px-Haitian_100_gourdes_%28obverse%29.jpg",
+            "250gourdes": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Haitian_250_gourdes_%28obverse%29.jpg/320px-Haitian_250_gourdes_%28obverse%29.jpg",
+            "500gourdes": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Haitian_500_gourdes_%28obverse%29.jpg/320px-Haitian_500_gourdes_%28obverse%29.jpg",
+            "1000gourdes": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Haitian_1000_gourdes_%28obverse%29.jpg/320px-Haitian_1000_gourdes_%28obverse%29.jpg"
+        };
 
+        // Grid images
+        const gridImages = {
+            "grid1": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Blank_6x6.svg/320px-Blank_6x6.svg.png",
+            "grid2": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Blank_5x5_grid.svg/320px-Blank_5x5_grid.svg.png",
+            "grid3": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Simple_grid.svg/320px-Simple_grid.svg.png",
+            "grid4": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Coordinate_plane.svg/320px-Coordinate_plane.svg.png"
+        };
+
+        // Initialize tasks with REAL images
+        function initializeTasks() {
             // Tasks for Haitian currency (20 tasks)
             for (let i = 1; i <= 20; i++) {
                 let task = {};
@@ -724,80 +820,86 @@
                 task.type = 'currency';
                 
                 if (i <= 5) {
-                    // Basic currency identification with images
+                    // Basic currency identification with REAL images
                     const values = [10, 25, 50, 100, 250];
                     const names = ["dix gourdes", "vingt-cinq gourdes", "cinquante gourdes", "cent gourdes", "deux cent cinquante gourdes"];
-                    const images = ["currency10", "currency25", "currency50", "currency100", "currency250"];
+                    const imageKeys = ["10gourdes", "25gourdes", "50gourdes", "100gourdes", "250gourdes"];
                     const idx = i - 1;
                     
-                    task.question = `Quelle est la valeur de ce billet?`;
-                    task.image = imageUrls[images[idx]];
+                    task.question = `Quelle est la valeur de ce billet haïtien?`;
+                    task.image = moneyImages[imageKeys[idx]];
                     task.options = [
-                        `${values[idx]} HTG`,
-                        `${values[(idx+1)%5]} HTG`,
-                        `${values[(idx+2)%5]} HTG`,
-                        `${values[(idx+3)%5]} HTG`
+                        `${values[idx]} gourdes`,
+                        `${values[(idx+1)%5]} gourdes`,
+                        `${values[(idx+2)%5]} gourdes`,
+                        `${values[(idx+3)%5]} gourdes`
                     ];
                     task.correct = 0;
-                    task.explanation = `Le billet de ${names[idx]} a une valeur de ${values[idx]} gourdes (HTG).`;
+                    task.explanation = `Ce billet représente ${values[idx]} gourdes haïtiennes (HTG ${values[idx]}).`;
                 } else if (i <= 10) {
-                    // Currency conversion
+                    // Currency conversion with images
                     const conversions = [
-                        {amount: 100, unit: "gourdes", result: 100, image: "currency100"},
-                        {amount: 250, unit: "gourdes", result: 250, image: "currency250"},
-                        {amount: 5, unit: "gourdes", result: 5, image: "currency10"},
-                        {amount: 50, unit: "centimes", result: 0.5, image: "currency50"},
-                        {amount: 100, unit: "centimes", result: 1, image: "currency100"}
+                        {amount: 100, unit: "gourdes", result: 100, image: "100gourdes"},
+                        {amount: 250, unit: "gourdes", result: 250, image: "250gourdes"},
+                        {amount: 5, unit: "gourdes", result: 5, note: "pièce de 5 gourdes"},
+                        {amount: 50, unit: "centimes", result: 0.5, note: "50 centimes = 0.5 gourde"},
+                        {amount: 100, unit: "centimes", result: 1, note: "100 centimes = 1 gourde"}
                     ];
                     const idx = i - 6;
                     
                     task.question = `Combien de gourdes font ${conversions[idx].amount} ${conversions[idx].unit}?`;
-                    task.image = imageUrls[conversions[idx].image];
+                    if (conversions[idx].image) {
+                        task.image = moneyImages[conversions[idx].image];
+                    }
                     task.options = [
-                        `${conversions[idx].result} HTG`,
-                        `${conversions[idx].result * 10} HTG`,
-                        `${conversions[idx].result / 10} HTG`,
-                        `${conversions[idx].result * 5} HTG`
+                        `${conversions[idx].result} gourde${conversions[idx].result !== 1 ? 's' : ''}`,
+                        `${conversions[idx].result * 10} gourdes`,
+                        `${conversions[idx].result / 10} gourde${conversions[idx].result/10 !== 1 ? 's' : ''}`,
+                        `${conversions[idx].result * 5} gourdes`
                     ];
                     task.correct = 0;
-                    task.explanation = `${conversions[idx].amount} ${conversions[idx].unit} = ${conversions[idx].result} gourdes.`;
+                    task.explanation = `${conversions[idx].amount} ${conversions[idx].unit} = ${conversions[idx].result} gourde${conversions[idx].result !== 1 ? 's' : ''}. ${conversions[idx].note || ''}`;
                 } else if (i <= 15) {
-                    // Currency counting with images
+                    // Currency counting with REAL images
                     const bills = [
-                        {ten: 2, fifty: 1, total: 70, image1: "currency10", image2: "currency50"},
-                        {ten: 3, fifty: 0, total: 30, image1: "currency10", image2: "currency10"},
-                        {ten: 0, fifty: 2, total: 100, image1: "currency50", image2: "currency50"},
-                        {ten: 1, fifty: 3, total: 160, image1: "currency10", image2: "currency50"},
-                        {ten: 4, fifty: 2, total: 140, image1: "currency10", image2: "currency50"}
+                        {ten: 2, fifty: 1, total: 70, image1: "10gourdes", image2: "50gourdes"},
+                        {ten: 3, fifty: 0, total: 30, image1: "10gourdes", image2: "10gourdes"},
+                        {ten: 0, fifty: 2, total: 100, image1: "50gourdes", image2: "50gourdes"},
+                        {ten: 1, fifty: 3, total: 160, image1: "10gourdes", image2: "50gourdes"},
+                        {ten: 4, fifty: 2, total: 140, image1: "10gourdes", image2: "50gourdes"}
                     ];
                     const idx = i - 11;
                     
-                    task.question = `Si vous avez ces billets, combien d'argent avez-vous en total?`;
-                    task.image = imageUrls[bills[idx].image1];
-                    task.secondImage = imageUrls[bills[idx].image2];
+                    task.question = `Si vous avez ces billets haïtiens, combien d'argent avez-vous en total?`;
+                    task.image = moneyImages[bills[idx].image1];
+                    task.secondImage = moneyImages[bills[idx].image2];
                     task.options = [
-                        `${bills[idx].total} HTG`,
-                        `${bills[idx].total + 10} HTG`,
-                        `${bills[idx].total - 10} HTG`,
-                        `${bills[idx].total * 2} HTG`
+                        `${bills[idx].total} gourdes`,
+                        `${bills[idx].total + 10} gourdes`,
+                        `${bills[idx].total - 10} gourdes`,
+                        `${bills[idx].total * 2} gourdes`
                     ];
                     task.correct = 0;
-                    task.explanation = `(${bills[idx].ten} × 10) + (${bills[idx].fifty} × 50) = ${bills[idx].total} gourdes.`;
+                    task.explanation = `(${bills[idx].ten} × 10 gourdes) + (${bills[idx].fifty} × 50 gourdes) = ${bills[idx].total} gourdes.`;
                 } else {
-                    // Currency comparison with images
+                    // Currency comparison with REAL images
                     const comparisons = [
-                        {a: "50 gourdes", b: "500 gourdes", larger: "500 gourdes", imageA: "currency50", imageB: "currency500"},
-                        {a: "100 gourdes", b: "1 gourde", larger: "100 gourdes", imageA: "currency100", imageB: "currency10"},
-                        {a: "25 gourdes", b: "250 gourdes", larger: "250 gourdes", imageA: "currency25", imageB: "currency250"},
-                        {a: "10 gourdes", b: "100 centimes", equal: true, imageA: "currency10", imageB: "currency100"},
-                        {a: "5 gourdes", b: "500 centimes", equal: true, imageA: "currency10", imageB: "currency500"}
+                        {a: "50 gourdes", b: "500 gourdes", larger: "500 gourdes", imageA: "50gourdes", imageB: "500gourdes"},
+                        {a: "100 gourdes", b: "1 gourde", larger: "100 gourdes", imageA: "100gourdes", imageB: "note: pièce de 1 gourde"},
+                        {a: "25 gourdes", b: "250 gourdes", larger: "250 gourdes", imageA: "25gourdes", imageB: "250gourdes"},
+                        {a: "10 gourdes", b: "100 centimes", equal: true, imageA: "10gourdes", imageB: "note: 100 centimes"},
+                        {a: "5 gourdes", b: "500 centimes", equal: true, imageA: "note: pièce de 5 gourdes", imageB: "note: 500 centimes"}
                     ];
                     const idx = i - 16;
                     
                     if (comparisons[idx].equal) {
-                        task.question = `Comparer ces deux valeurs:`;
-                        task.image = imageUrls[comparisons[idx].imageA];
-                        task.secondImage = imageUrls[comparisons[idx].imageB];
+                        task.question = `Comparer ces deux valeurs de la monnaie haïtienne:`;
+                        if (!comparisons[idx].imageA.includes("note:")) {
+                            task.image = moneyImages[comparisons[idx].imageA];
+                        }
+                        if (!comparisons[idx].imageB.includes("note:")) {
+                            task.secondImage = moneyImages[comparisons[idx].imageB];
+                        }
                         task.options = [
                             "Ils sont égaux",
                             `${comparisons[idx].a} est plus grand`,
@@ -807,17 +909,17 @@
                         task.correct = 0;
                         task.explanation = `1 gourde = 100 centimes, donc ${comparisons[idx].a} = ${comparisons[idx].b}.`;
                     } else {
-                        task.question = `Lequel est le plus grand?`;
-                        task.image = imageUrls[comparisons[idx].imageA];
-                        task.secondImage = imageUrls[comparisons[idx].imageB];
+                        task.question = `Lequel de ces billets haïtiens a la plus grande valeur?`;
+                        task.image = moneyImages[comparisons[idx].imageA];
+                        task.secondImage = moneyImages[comparisons[idx].imageB];
                         task.options = [
                             comparisons[idx].larger,
                             comparisons[idx].a === comparisons[idx].larger ? comparisons[idx].b : comparisons[idx].a,
-                            "Ils sont égaux",
+                            "Ils ont la même valeur",
                             "On ne peut pas comparer"
                         ];
                         task.correct = 0;
-                        task.explanation = `${comparisons[idx].larger} a une valeur plus grande.`;
+                        task.explanation = `Le billet de ${comparisons[idx].larger} a une valeur plus grande que l'autre.`;
                     }
                 }
                 
@@ -847,7 +949,7 @@
                     const idx = i - 21;
                     
                     task.question = concepts[idx].q;
-                    task.image = imageUrls[concepts[idx].image];
+                    task.image = gridImages[concepts[idx].image];
                     task.options = [...concepts[idx].options];
                     task.correct = task.options.indexOf(concepts[idx].a);
                     task.explanation = `La réponse correcte est: "${concepts[idx].a}".`;
@@ -868,7 +970,7 @@
                     const idx = i - 31;
                     
                     task.question = `Où se trouve la case ${coords[idx].coord} dans ce quadrillage?`;
-                    task.image = imageUrls[coords[idx].image];
+                    task.image = gridImages[coords[idx].image];
                     task.options = [
                         coords[idx].desc,
                         coords[(idx+1)%10].desc,
@@ -894,7 +996,7 @@
                     const idx = i - 41;
                     
                     task.question = problems[idx].q;
-                    task.image = imageUrls[problems[idx].image];
+                    task.image = gridImages[problems[idx].image];
                     task.options = [...problems[idx].options];
                     task.correct = task.options.indexOf(problems[idx].a);
                     task.explanation = `La réponse correcte est: "${problems[idx].a}".`;
@@ -973,8 +1075,12 @@
 
         // Play sound
         function playSound(audioElement) {
-            audioElement.currentTime = 0;
-            audioElement.play().catch(e => console.log("Audio play failed:", e));
+            try {
+                audioElement.currentTime = 0;
+                audioElement.play().catch(e => console.log("Audio play failed:", e));
+            } catch(e) {
+                console.log("Audio error:", e);
+            }
         }
 
         // Load a task
@@ -992,16 +1098,22 @@
             if (task.image) {
                 const img = document.createElement('img');
                 img.src = task.image;
-                img.alt = "Image pour la tâche";
+                img.alt = task.type === 'currency' ? "Billet haïtien" : "Quadrillage";
                 img.className = 'task-image';
+                img.onerror = function() {
+                    this.src = 'https://via.placeholder.com/250x120/CCCCCC/000000?text=Image+de+monnaie+haïtienne';
+                };
                 taskImageContainer.appendChild(img);
                 
                 // Add second image if exists
                 if (task.secondImage) {
                     const img2 = document.createElement('img');
                     img2.src = task.secondImage;
-                    img2.alt = "Deuxième image pour la tâche";
+                    img2.alt = task.type === 'currency' ? "Deuxième billet haïtien" : "Deuxième quadrillage";
                     img2.className = 'task-image';
+                    img2.onerror = function() {
+                        this.src = 'https://via.placeholder.com/250x120/CCCCCC/000000?text=Image+de+monnaie';
+                    };
                     taskImageContainer.appendChild(img2);
                 }
             }
@@ -1013,26 +1125,7 @@
             task.options.forEach((option, index) => {
                 const optionElement = document.createElement('div');
                 optionElement.className = 'option';
-                
-                // Check if option is an image (contains .png, .jpg, etc.)
-                if (option.match(/\.(jpg|jpeg|png|gif|webp)$/i)) {
-                    const imageOptionDiv = document.createElement('div');
-                    imageOptionDiv.className = 'image-option';
-                    
-                    const img = document.createElement('img');
-                    img.src = option;
-                    img.alt = `Option ${index + 1}`;
-                    
-                    const text = document.createElement('span');
-                    text.textContent = `Option ${index + 1}`;
-                    
-                    imageOptionDiv.appendChild(img);
-                    imageOptionDiv.appendChild(text);
-                    optionElement.appendChild(imageOptionDiv);
-                } else {
-                    optionElement.textContent = option;
-                }
-                
+                optionElement.textContent = option;
                 optionElement.dataset.index = index;
                 
                 // Check if this option was previously selected
@@ -1138,7 +1231,7 @@
                 }
             });
             
-            // Currency item clicks
+            // Currency item clicks - with SPECIFIC sounds for each
             document.querySelectorAll('.currency-item').forEach(item => {
                 item.addEventListener('click', function() {
                     const value = this.dataset.value;
@@ -1157,12 +1250,26 @@
                         }
                     });
                     
-                    // Play currency sound
-                    playSound(audioCurrency);
+                    // Play specific currency sound
+                    const specificAudio = document.getElementById(`audio${audioType}`);
+                    if (specificAudio) {
+                        playSound(specificAudio);
+                    } else {
+                        playSound(audioCurrency);
+                    }
+                    
+                    // Speak the currency name
+                    if ('speechSynthesis' in window) {
+                        const speech = new SpeechSynthesisUtterance();
+                        speech.text = `${name}, ${value} gourdes haïtiennes`;
+                        speech.lang = 'fr-FR';
+                        speech.rate = 0.8;
+                        window.speechSynthesis.speak(speech);
+                    }
                     
                     // Show message
                     setTimeout(() => {
-                        alert(`${name} = ${value} gourdes haïtiennes (HTG)`);
+                        // Message already shown via speech
                     }, 300);
                 });
             });
@@ -1173,7 +1280,7 @@
                 // Speak currency explanation
                 if ('speechSynthesis' in window) {
                     const speech = new SpeechSynthesisUtterance();
-                    speech.text = "La monnaie d'Haïti est la gourde. Elle est divisée en 100 centimes. Les billets courants sont de 10, 25, 50, 100, 250, 500 et 1000 gourdes.";
+                    speech.text = "La monnaie d'Haïti est la gourde. Elle est divisée en 100 centimes. Les billets courants sont de 10, 25, 50, 100, 250, 500 et 1000 gourdes. Les pièces sont de 5, 10, 20, 50 centimes, et de 1 et 5 gourdes.";
                     speech.lang = 'fr-FR';
                     speech.rate = 0.9;
                     window.speechSynthesis.speak(speech);
@@ -1186,7 +1293,7 @@
                 // Speak grid explanation
                 if ('speechSynthesis' in window) {
                     const speech = new SpeechSynthesisUtterance();
-                    speech.text = "Le quadrillage est formé de lignes et de colonnes. Les colonnes sont verticales et les lignes sont horizontales. Pour identifier une case, on utilise des parenthèses et des virgules, par exemple: (2,3)";
+                    speech.text = "Le quadrillage est formé de lignes et de colonnes. Les colonnes sont verticales et les lignes sont horizontales. Pour identifier une case, on utilise des parenthèses et des virgules, par exemple: (2,3) signifie colonne 2, ligne 3.";
                     speech.lang = 'fr-FR';
                     speech.rate = 0.9;
                     window.speechSynthesis.speak(speech);
@@ -1198,7 +1305,7 @@
                 // Speak grid explanation
                 if ('speechSynthesis' in window) {
                     const speech = new SpeechSynthesisUtterance();
-                    speech.text = "Dans un quadrillage, les cases sont identifiées par leurs coordonnées. La première coordonnée est la colonne, la deuxième est la ligne. Par exemple, la case (3,2) est à la colonne 3, ligne 2.";
+                    speech.text = "Dans un quadrillage, les cases sont identifiées par leurs coordonnées. La première coordonnée est la colonne, la deuxième est la ligne. Par exemple, la case (3,2) est à la colonne 3, ligne 2. Les colonnes sont numérotées de gauche à droite, les lignes de haut en bas.";
                     speech.lang = 'fr-FR';
                     speech.rate = 0.9;
                     window.speechSynthesis.speak(speech);
@@ -1241,6 +1348,22 @@
                         window.speechSynthesis.speak(speech);
                     }
                 });
+            });
+            
+            // Preload images for better performance
+            preloadImages();
+        }
+
+        // Preload images
+        function preloadImages() {
+            const imagesToPreload = [
+                ...Object.values(moneyImages),
+                ...Object.values(gridImages)
+            ];
+            
+            imagesToPreload.forEach(src => {
+                const img = new Image();
+                img.src = src;
             });
         }
 
@@ -1322,15 +1445,18 @@
             
             let recommendations = [];
             if (currencyPercent < 70 && currencyAnswered > 0) {
-                recommendations.push("Revoir les billets et pièces de la monnaie haïtienne");
+                recommendations.push("Revoir les billets haïtiens: 10, 25, 50, 100, 250, 500 gourdes");
                 recommendations.push("Pratiquer les conversions entre gourdes et centimes");
+                recommendations.push("Mémoriser les couleurs et designs des billets");
             }
             if (gridPercent < 70 && gridAnswered > 0) {
-                recommendations.push("Pratiquer davantage l'identification des cases dans un quadrillage");
+                recommendations.push("Pratiquer l'identification des cases dans un quadrillage");
                 recommendations.push("S'exercer à lire les coordonnées (colonne, ligne)");
+                recommendations.push("Comprendre la différence entre lignes et colonnes");
             }
             if (recommendations.length === 0 && answeredTasks > 0) {
                 recommendations.push("Excellent travail! Continuez à pratiquer pour maintenir vos compétences.");
+                recommendations.push("Explorez d'autres billets haïtiens comme le 1000 gourdes");
             }
             if (answeredTasks === 0) {
                 recommendations.push("Commencez par compléter quelques tâches pour obtenir des recommandations personnalisées.");
@@ -1348,10 +1474,10 @@
             doc.setFontSize(11);
             doc.setTextColor(0, 0, 0);
             const tips = [
-                "Utilisez les fonctionnalités audio pour entendre les explications",
-                "Cliquez sur les images de billets pour en savoir plus",
-                "Interagissez avec le quadrillage pour comprendre les coordonnées",
-                "Revisez les notions clés dans la section 'Leçons'"
+                "Cliquez sur les images des billets pour entendre leur valeur",
+                "Utilisez le quadrillage interactif pour pratiquer les coordonnées",
+                "Écoutez les explications audio en cliquant sur les icônes de son",
+                "Revisez régulièrement les billets haïtiens pour les mémoriser"
             ];
             
             tips.forEach((tip, index) => {
