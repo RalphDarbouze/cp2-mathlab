@@ -1,0 +1,104 @@
+{
+  "app": {
+    "name": "La Monaie Haïtienne",
+    "version": "1.0.0",
+    "description": "Application éducative pour apprendre la monnaie haïtienne"
+  },
+  "money": {
+    "currency": {
+      "name": "Gourde haïtienne",
+      "symbol": "HTG",
+      "subunit": "Centime",
+      "subunitValue": 100
+    },
+    "bills": [
+      {
+        "value": 10,
+        "name": "Dix gourdes",
+        "color": "#00209f",
+        "description": "Billet bleu de 10 gourdes",
+        "commonUses": ["Petits achats", "Transport"]
+      },
+      {
+        "value": 25,
+        "name": "Vingt-cinq gourdes",
+        "color": "#00209f",
+        "description": "Billet bleu de 25 gourdes",
+        "commonUses": ["Courses quotidiennes"]
+      },
+      {
+        "value": 50,
+        "name": "Cinquante gourdes",
+        "color": "#00209f",
+        "description": "Billet bleu de 50 gourdes",
+        "commonUses": ["Achats moyens", "Repas"]
+      },
+      {
+        "value": 100,
+        "name": "Cent gourdes",
+        "color": "#c00",
+        "description": "Billet rouge de 100 gourdes",
+        "commonUses": ["Courses hebdomadaires"]
+      },
+      {
+        "value": 250,
+        "name": "Deux cent cinquante gourdes",
+        "color": "#c00",
+        "description": "Billet rouge de 250 gourdes",
+        "commonUses": ["Achats importants"]
+      },
+      {
+        "value": 500,
+        "name": "Cinq cents gourdes",
+        "color": "#008000",
+        "description": "Billet vert de 500 gourdes",
+        "commonUses": ["Dépenses importantes"]
+      }
+    ],
+    "coins": [
+      {
+        "value": 1,
+        "name": "Une gourde",
+        "type": "pièce",
+        "description": "Pièce de 1 gourde"
+      },
+      {
+        "value": 5,
+        "name": "Cinq gourdes",
+        "type": "pièce",
+        "description": "Pièce de 5 gourdes"
+      },
+      {
+        "value": 0.10,
+        "name": "Dix centimes",
+        "type": "pièce",
+        "description": "Pièce de 10 centimes"
+      },
+      {
+        "value": 0.20,
+        "name": "Vingt centimes",
+        "type": "pièce",
+        "description": "Pièce de 20 centimes"
+      },
+      {
+        "value": 0.50,
+        "name": "Cinquante centimes",
+        "type": "pièce",
+        "description": "Pièce de 50 centimes"
+      }
+    ]
+  },
+  "learningObjectives": [
+    "Identifier les différents billets haïtiens",
+    "Comprendre la valeur de chaque billet",
+    "Effectuer des conversions entre gourdes et centimes",
+    "Calculer la monnaie à rendre",
+    "Comparer les valeurs des billets"
+  ],
+  "audioSettings": {
+    "language": "fr-FR",
+    "speechRate": 0.9,
+    "speechPitch": 1,
+    "soundEffects": true
+  }
+}
