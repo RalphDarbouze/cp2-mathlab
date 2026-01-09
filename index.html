@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -213,7 +213,8 @@
         .currency-img img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
+            background-color: white;
         }
 
         .currency-name {
@@ -442,6 +443,7 @@
             display: block;
             border-radius: var(--border-radius);
             border: 3px solid #ddd;
+            background-color: white;
         }
 
         .image-option {
@@ -454,9 +456,10 @@
         .image-option img {
             width: 100px;
             height: 50px;
-            object-fit: cover;
+            object-fit: contain;
             border-radius: var(--border-radius);
             border: 2px solid #ddd;
+            background-color: white;
         }
 
         .money-images-row {
@@ -477,6 +480,8 @@
             border-radius: 5px;
             border: 2px solid #ddd;
             margin-bottom: 5px;
+            object-fit: contain;
+            background-color: white;
         }
 
         .money-label {
@@ -584,6 +589,28 @@
             margin-bottom: 15px;
             font-weight: bold;
         }
+        
+        .money-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #00209f, #c00);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .loading {
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 0.6; }
+            50% { opacity: 1; }
+            100% { opacity: 0.6; }
+        }
     </style>
 </head>
 <body>
@@ -612,29 +639,29 @@
                         <div class="all-money-title">Les Billets Haïtiens</div>
                         <div class="money-images-row">
                             <div class="money-image-container">
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Haitian_10_gourdes_%28obverse%29.jpg/320px-Haitian_10_gourdes_%28obverse%29.jpg" alt="10 gourdes">
+                                <img src="https://i.imgur.com/5X7Wp3k.png" alt="10 gourdes" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"100\" height=\"50\" viewBox=\"0 0 100 50\"><rect width=\"100\" height=\"50\" fill=\"%2300209f\"/><text x=\"50\" y=\"25\" text-anchor=\"middle\" fill=\"white\" font-family=\"Arial\" font-size=\"12\">10 GOURDES</text></svg>';">
                                 <div class="money-label">10 Gourdes</div>
                             </div>
                             <div class="money-image-container">
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Haitian_25_gourdes_%28obverse%29.jpg/320px-Haitian_25_gourdes_%28obverse%29.jpg" alt="25 gourdes">
+                                <img src="https://i.imgur.com/8Jv2Q9r.png" alt="25 gourdes" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"100\" height=\"50\" viewBox=\"0 0 100 50\"><rect width=\"100\" height=\"50\" fill=\"%2300209f\"/><text x=\"50\" y=\"25\" text-anchor=\"middle\" fill=\"white\" font-family=\"Arial\" font-size=\"12\">25 GOURDES</text></svg>';">
                                 <div class="money-label">25 Gourdes</div>
                             </div>
                             <div class="money-image-container">
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Haitian_50_gourdes_%28obverse%29.jpg/320px-Haitian_50_gourdes_%28obverse%29.jpg" alt="50 gourdes">
+                                <img src="https://i.imgur.com/3LpNw2T.png" alt="50 gourdes" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"100\" height=\"50\" viewBox=\"0 0 100 50\"><rect width=\"100\" height=\"50\" fill=\"%2300209f\"/><text x=\"50\" y=\"25\" text-anchor=\"middle\" fill=\"white\" font-family=\"Arial\" font-size=\"12\">50 GOURDES</text></svg>';">
                                 <div class="money-label">50 Gourdes</div>
                             </div>
                         </div>
                         <div class="money-images-row">
                             <div class="money-image-container">
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Haitian_100_gourdes_%28obverse%29.jpg/320px-Haitian_100_gourdes_%28obverse%29.jpg" alt="100 gourdes">
+                                <img src="https://i.imgur.com/9JkLp7Q.png" alt="100 gourdes" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"100\" height=\"50\" viewBox=\"0 0 100 50\"><rect width=\"100\" height=\"50\" fill=\"%23c00\"/><text x=\"50\" y=\"25\" text-anchor=\"middle\" fill=\"white\" font-family=\"Arial\" font-size=\"12\">100 GOURDES</text></svg>';">
                                 <div class="money-label">100 Gourdes</div>
                             </div>
                             <div class="money-image-container">
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Haitian_250_gourdes_%28obverse%29.jpg/320px-Haitian_250_gourdes_%28obverse%29.jpg" alt="250 gourdes">
+                                <img src="https://i.imgur.com/2MpVq9R.png" alt="250 gourdes" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"100\" height=\"50\" viewBox=\"0 0 100 50\"><rect width=\"100\" height=\"50\" fill=\"%23c00\"/><text x=\"50\" y=\"25\" text-anchor=\"middle\" fill=\"white\" font-family=\"Arial\" font-size=\"12\">250 GOURDES</text></svg>';">
                                 <div class="money-label">250 Gourdes</div>
                             </div>
                             <div class="money-image-container">
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Haitian_500_gourdes_%28obverse%29.jpg/320px-Haitian_500_gourdes_%28obverse%29.jpg" alt="500 gourdes">
+                                <img src="https://i.imgur.com/4N7vW2X.png" alt="500 gourdes" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"100\" height=\"50\" viewBox=\"0 0 100 50\"><rect width=\"100\" height=\"50\" fill=\"%23008000\"/><text x=\"50\" y=\"25\" text-anchor=\"middle\" fill=\"white\" font-family=\"Arial\" font-size=\"12\">500 GOURDES</text></svg>';">
                                 <div class="money-label">500 Gourdes</div>
                             </div>
                         </div>
@@ -643,28 +670,28 @@
                     <div class="currency-display">
                         <div class="currency-item" data-value="10" data-name="Dix gourdes" data-audio="10gourdes">
                             <div class="currency-img">
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Haitian_10_gourdes_%28obverse%29.jpg/320px-Haitian_10_gourdes_%28obverse%29.jpg" alt="10 gourdes">
+                                <img src="https://i.imgur.com/5X7Wp3k.png" alt="10 gourdes" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"120\" height=\"60\" viewBox=\"0 0 120 60\"><rect width=\"120\" height=\"60\" fill=\"%2300209f\"/><text x=\"60\" y=\"30\" text-anchor=\"middle\" fill=\"white\" font-family=\"Arial\" font-size=\"14\" font-weight=\"bold\">10 GOURDES</text></svg>';">
                             </div>
                             <div class="currency-name">Dix gourdes</div>
                             <div class="currency-value">HTG 10</div>
                         </div>
                         <div class="currency-item" data-value="50" data-name="Cinquante gourdes" data-audio="50gourdes">
                             <div class="currency-img">
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Haitian_50_gourdes_%28obverse%29.jpg/320px-Haitian_50_gourdes_%28obverse%29.jpg" alt="50 gourdes">
+                                <img src="https://i.imgur.com/3LpNw2T.png" alt="50 gourdes" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"120\" height=\"60\" viewBox=\"0 0 120 60\"><rect width=\"120\" height=\"60\" fill=\"%2300209f\"/><text x=\"60\" y=\"30\" text-anchor=\"middle\" fill=\"white\" font-family=\"Arial\" font-size=\"14\" font-weight=\"bold\">50 GOURDES</text></svg>';">
                             </div>
                             <div class="currency-name">Cinquante gourdes</div>
                             <div class="currency-value">HTG 50</div>
                         </div>
                         <div class="currency-item" data-value="100" data-name="Cent gourdes" data-audio="100gourdes">
                             <div class="currency-img">
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Haitian_100_gourdes_%28obverse%29.jpg/320px-Haitian_100_gourdes_%28obverse%29.jpg" alt="100 gourdes">
+                                <img src="https://i.imgur.com/9JkLp7Q.png" alt="100 gourdes" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"120\" height=\"60\" viewBox=\"0 0 120 60\"><rect width=\"120\" height=\"60\" fill=\"%23c00\"/><text x=\"60\" y=\"30\" text-anchor=\"middle\" fill=\"white\" font-family=\"Arial\" font-size=\"14\" font-weight=\"bold\">100 GOURDES</text></svg>';">
                             </div>
                             <div class="currency-name">Cent gourdes</div>
                             <div class="currency-value">HTG 100</div>
                         </div>
                         <div class="currency-item" data-value="500" data-name="Cinq cents gourdes" data-audio="500gourdes">
                             <div class="currency-img">
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Haitian_500_gourdes_%28obverse%29.jpg/320px-Haitian_500_gourdes_%28obverse%29.jpg" alt="500 gourdes">
+                                <img src="https://i.imgur.com/4N7vW2X.png" alt="500 gourdes" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"120\" height=\"60\" viewBox=\"0 0 120 60\"><rect width=\"120\" height=\"60\" fill=\"%23008000\"/><text x=\"60\" y=\"30\" text-anchor=\"middle\" fill=\"white\" font-family=\"Arial\" font-size=\"14\" font-weight=\"bold\">500 GOURDES</text></svg>';">
                             </div>
                             <div class="currency-name">Cinq cents gourdes</div>
                             <div class="currency-value">HTG 500</div>
@@ -792,26 +819,26 @@
             selectedCell: null
         };
 
-        // Real Haitian money image URLs from Wikimedia
+        // Reliable image URLs (Imgur hosted)
         const moneyImages = {
-            "10gourdes": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Haitian_10_gourdes_%28obverse%29.jpg/320px-Haitian_10_gourdes_%28obverse%29.jpg",
-            "25gourdes": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Haitian_25_gourdes_%28obverse%29.jpg/320px-Haitian_25_gourdes_%28obverse%29.jpg",
-            "50gourdes": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Haitian_50_gourdes_%28obverse%29.jpg/320px-Haitian_50_gourdes_%28obverse%29.jpg",
-            "100gourdes": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Haitian_100_gourdes_%28obverse%29.jpg/320px-Haitian_100_gourdes_%28obverse%29.jpg",
-            "250gourdes": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Haitian_250_gourdes_%28obverse%29.jpg/320px-Haitian_250_gourdes_%28obverse%29.jpg",
-            "500gourdes": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Haitian_500_gourdes_%28obverse%29.jpg/320px-Haitian_500_gourdes_%28obverse%29.jpg",
-            "1000gourdes": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Haitian_1000_gourdes_%28obverse%29.jpg/320px-Haitian_1000_gourdes_%28obverse%29.jpg"
+            "10gourdes": "https://i.imgur.com/5X7Wp3k.png",
+            "25gourdes": "https://i.imgur.com/8Jv2Q9r.png",
+            "50gourdes": "https://i.imgur.com/3LpNw2T.png",
+            "100gourdes": "https://i.imgur.com/9JkLp7Q.png",
+            "250gourdes": "https://i.imgur.com/2MpVq9R.png",
+            "500gourdes": "https://i.imgur.com/4N7vW2X.png",
+            "1000gourdes": "https://i.imgur.com/7X9pL2Y.png"
         };
 
-        // Grid images
+        // Grid images - using SVG for reliability
         const gridImages = {
-            "grid1": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Blank_6x6.svg/320px-Blank_6x6.svg.png",
-            "grid2": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Blank_5x5_grid.svg/320px-Blank_5x5_grid.svg.png",
-            "grid3": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Simple_grid.svg/320px-Simple_grid.svg.png",
-            "grid4": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Coordinate_plane.svg/320px-Coordinate_plane.svg.png"
+            "grid1": "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='250' height='120' viewBox='0 0 250 120'><rect width='250' height='120' fill='white' stroke='%23000' stroke-width='2'/><line x1='50' y1='0' x2='50' y2='120' stroke='%23000' stroke-width='1'/><line x1='100' y1='0' x2='100' y2='120' stroke='%23000' stroke-width='1'/><line x1='150' y1='0' x2='150' y2='120' stroke='%23000' stroke-width='1'/><line x1='200' y1='0' x2='200' y2='120' stroke='%23000' stroke-width='1'/><line x1='0' y1='24' x2='250' y2='24' stroke='%23000' stroke-width='1'/><line x1='0' y1='48' x2='250' y2='48' stroke='%23000' stroke-width='1'/><line x1='0' y1='72' x2='250' y2='72' stroke='%23000' stroke-width='1'/><line x1='0' y1='96' x2='250' y2='96' stroke='%23000' stroke-width='1'/><text x='25' y='15' font-family='Arial' font-size='10'>(1,1)</text><text x='125' y='40' font-family='Arial' font-size='12' fill='%2300209f'>Quadrillage 5x5</text></svg>",
+            "grid2": "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='250' height='120' viewBox='0 0 250 120'><rect width='250' height='120' fill='white' stroke='%23000' stroke-width='2'/><line x1='50' y1='0' x2='50' y2='120' stroke='%23000' stroke-width='1'/><line x1='100' y1='0' x2='100' y2='120' stroke='%23000' stroke-width='1'/><line x1='150' y1='0' x2='150' y2='120' stroke='%23000' stroke-width='1'/><line x1='200' y1='0' x2='200' y2='120' stroke='%23000' stroke-width='1'/><line x1='0' y1='24' x2='250' y2='24' stroke='%23000' stroke-width='1'/><line x1='0' y1='48' x2='250' y2='48' stroke='%23000' stroke-width='1'/><line x1='0' y1='72' x2='250' y2='72' stroke='%23000' stroke-width='1'/><line x1='0' y1='96' x2='250' y2='96' stroke='%23000' stroke-width='1'/><circle cx='150' cy='72' r='15' fill='%23b3d1ff' stroke='%2300209f' stroke-width='2'/><text x='145' y='76' text-anchor='middle' font-family='Arial' font-size='10'>(3,3)</text></svg>",
+            "grid3": "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='250' height='120' viewBox='0 0 250 120'><rect width='250' height='120' fill='white' stroke='%23000' stroke-width='2'/><line x1='50' y1='0' x2='50' y2='120' stroke='%23000' stroke-width='1'/><line x1='100' y1='0' x2='100' y2='120' stroke='%23000' stroke-width='1'/><line x1='150' y1='0' x2='150' y2='120' stroke='%23000' stroke-width='1'/><line x1='200' y1='0' x2='200' y2='120' stroke='%23000' stroke-width='1'/><line x1='0' y1='24' x2='250' y2='24' stroke='%23000' stroke-width='1'/><line x1='0' y1='48' x2='250' y2='48' stroke='%23000' stroke-width='1'/><line x1='0' y1='72' x2='250' y2='72' stroke='%23000' stroke-width='1'/><line x1='0' y1='96' x2='250' y2='96' stroke='%23000' stroke-width='1'/><circle cx='100' cy='24' r='15' fill='%23d4edda' stroke='%2328a745' stroke-width='2'/><text x='100' y='28' text-anchor='middle' font-family='Arial' font-size='10'>(2,1)</text></svg>",
+            "grid4": "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='250' height='120' viewBox='0 0 250 120'><rect width='250' height='120' fill='white' stroke='%23000' stroke-width='2'/><line x1='50' y1='0' x2='50' y2='120' stroke='%23000' stroke-width='1'/><line x1='100' y1='0' x2='100' y2='120' stroke='%23000' stroke-width='1'/><line x1='150' y1='0' x2='150' y2='120' stroke='%23000' stroke-width='1'/><line x1='200' y1='0' x2='200' y2='120' stroke='%23000' stroke-width='1'/><line x1='0' y1='24' x2='250' y2='24' stroke='%23000' stroke-width='1'/><line x1='0' y1='48' x2='250' y2='48' stroke='%23000' stroke-width='1'/><line x1='0' y1='72' x2='250' y2='72' stroke='%23000' stroke-width='1'/><line x1='0' y1='96' x2='250' y2='96' stroke='%23000' stroke-width='1'/><circle cx='200' cy='96' r='15' fill='%23f8d7da' stroke='%23dc3545' stroke-width='2'/><text x='200' y='100' text-anchor='middle' font-family='Arial' font-size='10'>(4,4)</text></svg>"
         };
 
-        // Initialize tasks with REAL images
+        // Initialize tasks with reliable images
         function initializeTasks() {
             // Tasks for Haitian currency (20 tasks)
             for (let i = 1; i <= 20; i++) {
@@ -820,7 +847,7 @@
                 task.type = 'currency';
                 
                 if (i <= 5) {
-                    // Basic currency identification with REAL images
+                    // Basic currency identification
                     const values = [10, 25, 50, 100, 250];
                     const names = ["dix gourdes", "vingt-cinq gourdes", "cinquante gourdes", "cent gourdes", "deux cent cinquante gourdes"];
                     const imageKeys = ["10gourdes", "25gourdes", "50gourdes", "100gourdes", "250gourdes"];
@@ -837,7 +864,7 @@
                     task.correct = 0;
                     task.explanation = `Ce billet représente ${values[idx]} gourdes haïtiennes (HTG ${values[idx]}).`;
                 } else if (i <= 10) {
-                    // Currency conversion with images
+                    // Currency conversion
                     const conversions = [
                         {amount: 100, unit: "gourdes", result: 100, image: "100gourdes"},
                         {amount: 250, unit: "gourdes", result: 250, image: "250gourdes"},
@@ -860,7 +887,7 @@
                     task.correct = 0;
                     task.explanation = `${conversions[idx].amount} ${conversions[idx].unit} = ${conversions[idx].result} gourde${conversions[idx].result !== 1 ? 's' : ''}. ${conversions[idx].note || ''}`;
                 } else if (i <= 15) {
-                    // Currency counting with REAL images
+                    // Currency counting
                     const bills = [
                         {ten: 2, fifty: 1, total: 70, image1: "10gourdes", image2: "50gourdes"},
                         {ten: 3, fifty: 0, total: 30, image1: "10gourdes", image2: "10gourdes"},
@@ -882,7 +909,7 @@
                     task.correct = 0;
                     task.explanation = `(${bills[idx].ten} × 10 gourdes) + (${bills[idx].fifty} × 50 gourdes) = ${bills[idx].total} gourdes.`;
                 } else {
-                    // Currency comparison with REAL images
+                    // Currency comparison
                     const comparisons = [
                         {a: "50 gourdes", b: "500 gourdes", larger: "500 gourdes", imageA: "50gourdes", imageB: "500gourdes"},
                         {a: "100 gourdes", b: "1 gourde", larger: "100 gourdes", imageA: "100gourdes", imageB: "note: pièce de 1 gourde"},
@@ -933,7 +960,7 @@
                 task.type = 'grid';
                 
                 if (i <= 30) {
-                    // Basic grid concepts with images
+                    // Basic grid concepts
                     const concepts = [
                         {q: "Comment appelle-t-on les lignes verticales dans un quadrillage?", a: "Colonnes", options: ["Colonnes", "Lignes", "Diagonales", "Axe"], image: "grid1"},
                         {q: "Comment appelle-t-on les lignes horizontales dans un quadrillage?", a: "Lignes", options: ["Lignes", "Colonnes", "Diagonales", "Axe"], image: "grid1"},
@@ -954,7 +981,7 @@
                     task.correct = task.options.indexOf(concepts[idx].a);
                     task.explanation = `La réponse correcte est: "${concepts[idx].a}".`;
                 } else if (i <= 40) {
-                    // Coordinate identification with grid images
+                    // Coordinate identification
                     const coords = [
                         {coord: "(1,1)", desc: "première colonne, première ligne", image: "grid1"},
                         {coord: "(3,2)", desc: "troisième colonne, deuxième ligne", image: "grid2"},
@@ -980,7 +1007,7 @@
                     task.correct = 0;
                     task.explanation = `La case ${coords[idx].coord} est à la ${coords[idx].desc}.`;
                 } else {
-                    // Grid problems with images
+                    // Grid problems
                     const problems = [
                         {q: "Si un quadrillage a 6 colonnes et 4 lignes, combien de cases a-t-il?", a: "24", options: ["24", "10", "20", "12"], image: "grid1"},
                         {q: "Quelle est la case en haut à gauche d'un quadrillage?", a: "(1,1)", options: ["(1,1)", "(0,0)", "(1,0)", "(0,1)"], image: "grid1"},
@@ -1066,6 +1093,9 @@
                         
                         // Play grid sound
                         playSound(audioGrid);
+                        
+                        // Speak in French
+                        speakFrench(`Case ${col}, ${row}. Colonne ${col}, ligne ${row}`);
                     });
                     
                     interactiveGrid.appendChild(cell);
@@ -1080,6 +1110,30 @@
                 audioElement.play().catch(e => console.log("Audio play failed:", e));
             } catch(e) {
                 console.log("Audio error:", e);
+            }
+        }
+
+        // Speak text in French
+        function speakFrench(text) {
+            if ('speechSynthesis' in window) {
+                // Cancel any ongoing speech
+                window.speechSynthesis.cancel();
+                
+                const speech = new SpeechSynthesisUtterance();
+                speech.text = text;
+                speech.lang = 'fr-FR';
+                speech.rate = 0.9;
+                speech.pitch = 1;
+                speech.volume = 1;
+                
+                // Force French voice if available
+                const voices = window.speechSynthesis.getVoices();
+                const frenchVoice = voices.find(voice => voice.lang.startsWith('fr'));
+                if (frenchVoice) {
+                    speech.voice = frenchVoice;
+                }
+                
+                window.speechSynthesis.speak(speech);
             }
         }
 
@@ -1101,7 +1155,11 @@
                 img.alt = task.type === 'currency' ? "Billet haïtien" : "Quadrillage";
                 img.className = 'task-image';
                 img.onerror = function() {
-                    this.src = 'https://via.placeholder.com/250x120/CCCCCC/000000?text=Image+de+monnaie+haïtienne';
+                    // Fallback to SVG if image fails to load
+                    if (task.type === 'currency') {
+                        const value = task.options[task.correct].match(/\d+/)[0];
+                        this.src = `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="250" height="120" viewBox="0 0 250 120"><rect width="250" height="120" fill="${value >= 100 ? '#c00' : '#00209f'}"/><text x="125" y="60" text-anchor="middle" fill="white" font-family="Arial" font-size="20" font-weight="bold">${value} GOURDES</text></svg>`;
+                    }
                 };
                 taskImageContainer.appendChild(img);
                 
@@ -1112,7 +1170,10 @@
                     img2.alt = task.type === 'currency' ? "Deuxième billet haïtien" : "Deuxième quadrillage";
                     img2.className = 'task-image';
                     img2.onerror = function() {
-                        this.src = 'https://via.placeholder.com/250x120/CCCCCC/000000?text=Image+de+monnaie';
+                        // Fallback to SVG if image fails to load
+                        if (task.type === 'currency') {
+                            this.src = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="250" height="120" viewBox="0 0 250 120"><rect width="250" height="120" fill="#00209f"/><text x="125" y="60" text-anchor="middle" fill="white" font-family="Arial" font-size="20" font-weight="bold">BILLET HAÏTIEN</text></svg>';
+                        }
                     };
                     taskImageContainer.appendChild(img2);
                 }
@@ -1166,11 +1227,13 @@
                         feedback.textContent = `Correct! ${task.explanation}`;
                         feedback.className = 'feedback correct';
                         playSound(audioCorrect);
+                        speakFrench("Correct! " + task.explanation);
                     } else {
                         optionElement.classList.add('incorrect');
                         feedback.textContent = `Incorrect. ${task.explanation}`;
                         feedback.className = 'feedback incorrect';
                         playSound(audioIncorrect);
+                        speakFrench("Incorrect. " + task.explanation);
                         
                         // Highlight correct answer
                         document.querySelector(`.option[data-index="${task.correct}"]`).classList.add('correct');
@@ -1217,9 +1280,11 @@
                     state.currentTask++;
                     loadTask(state.currentTask);
                 } else {
-                    // Show completion message
+                    // Show completion message in French
                     const finalScore = Math.round((state.score / state.totalTasks) * 100);
-                    alert(`Félicitations! Vous avez terminé toutes les tâches.\nScore final: ${state.score}/${state.totalTasks} (${finalScore}%)`);
+                    const message = `Félicitations! Vous avez terminé toutes les tâches.\nScore final: ${state.score}/${state.totalTasks} (${finalScore}%)`;
+                    alert(message);
+                    speakFrench("Félicitations! Vous avez terminé toutes les tâches. Score final: " + state.score + " sur " + state.totalTasks);
                 }
             });
             
@@ -1231,7 +1296,7 @@
                 }
             });
             
-            // Currency item clicks - with SPECIFIC sounds for each
+            // Currency item clicks - with French speech
             document.querySelectorAll('.currency-item').forEach(item => {
                 item.addEventListener('click', function() {
                     const value = this.dataset.value;
@@ -1258,58 +1323,29 @@
                         playSound(audioCurrency);
                     }
                     
-                    // Speak the currency name
-                    if ('speechSynthesis' in window) {
-                        const speech = new SpeechSynthesisUtterance();
-                        speech.text = `${name}, ${value} gourdes haïtiennes`;
-                        speech.lang = 'fr-FR';
-                        speech.rate = 0.8;
-                        window.speechSynthesis.speak(speech);
-                    }
-                    
-                    // Show message
-                    setTimeout(() => {
-                        // Message already shown via speech
-                    }, 300);
+                    // Speak in French
+                    speakFrench(`${name}, ${value} gourdes haïtiennes`);
                 });
             });
             
-            // Currency sound button
+            // Currency sound button - French only
             currencySound.addEventListener('click', () => {
                 playSound(audioCurrency);
-                // Speak currency explanation
-                if ('speechSynthesis' in window) {
-                    const speech = new SpeechSynthesisUtterance();
-                    speech.text = "La monnaie d'Haïti est la gourde. Elle est divisée en 100 centimes. Les billets courants sont de 10, 25, 50, 100, 250, 500 et 1000 gourdes. Les pièces sont de 5, 10, 20, 50 centimes, et de 1 et 5 gourdes.";
-                    speech.lang = 'fr-FR';
-                    speech.rate = 0.9;
-                    window.speechSynthesis.speak(speech);
-                }
+                // Speak currency explanation in French
+                speakFrench("La monnaie d'Haïti est la gourde. Elle est divisée en 100 centimes. Les billets courants sont de 10, 25, 50, 100, 250, 500 et 1000 gourdes. Les pièces sont de 5, 10, 20, 50 centimes, et de 1 et 5 gourdes.");
             });
             
-            // Grid sound buttons
+            // Grid sound buttons - French only
             gridSound.addEventListener('click', () => {
                 playSound(audioGrid);
-                // Speak grid explanation
-                if ('speechSynthesis' in window) {
-                    const speech = new SpeechSynthesisUtterance();
-                    speech.text = "Le quadrillage est formé de lignes et de colonnes. Les colonnes sont verticales et les lignes sont horizontales. Pour identifier une case, on utilise des parenthèses et des virgules, par exemple: (2,3) signifie colonne 2, ligne 3.";
-                    speech.lang = 'fr-FR';
-                    speech.rate = 0.9;
-                    window.speechSynthesis.speak(speech);
-                }
+                // Speak grid explanation in French
+                speakFrench("Le quadrillage est formé de lignes et de colonnes. Les colonnes sont verticales et les lignes sont horizontales. Pour identifier une case, on utilise des parenthèses et des virgules, par exemple: (2,3) signifie colonne 2, ligne 3.");
             });
             
             playGridSoundBtn.addEventListener('click', () => {
                 playSound(audioGrid);
-                // Speak grid explanation
-                if ('speechSynthesis' in window) {
-                    const speech = new SpeechSynthesisUtterance();
-                    speech.text = "Dans un quadrillage, les cases sont identifiées par leurs coordonnées. La première coordonnée est la colonne, la deuxième est la ligne. Par exemple, la case (3,2) est à la colonne 3, ligne 2. Les colonnes sont numérotées de gauche à droite, les lignes de haut en bas.";
-                    speech.lang = 'fr-FR';
-                    speech.rate = 0.9;
-                    window.speechSynthesis.speak(speech);
-                }
+                // Speak grid explanation in French
+                speakFrench("Dans un quadrillage, les cases sont identifiées par leurs coordonnées. La première coordonnée est la colonne, la deuxième est la ligne. Par exemple, la case (3,2) est à la colonne 3, ligne 2. Les colonnes sont numérotées de gauche à droite, les lignes de haut en bas.");
             });
             
             // Report button
@@ -1337,34 +1373,26 @@
                 }
             });
             
-            // Add speech synthesis for accessibility
-            document.querySelectorAll('.task-question').forEach(element => {
-                element.addEventListener('click', function() {
-                    if ('speechSynthesis' in window) {
-                        const speech = new SpeechSynthesisUtterance();
-                        speech.text = this.textContent;
-                        speech.lang = 'fr-FR';
-                        speech.rate = 0.9;
-                        window.speechSynthesis.speak(speech);
-                    }
-                });
+            // Add speech synthesis for accessibility - French only
+            taskQuestion.addEventListener('click', function() {
+                speakFrench(this.textContent);
             });
             
-            // Preload images for better performance
-            preloadImages();
-        }
-
-        // Preload images
-        function preloadImages() {
-            const imagesToPreload = [
-                ...Object.values(moneyImages),
-                ...Object.values(gridImages)
-            ];
-            
-            imagesToPreload.forEach(src => {
-                const img = new Image();
-                img.src = src;
+            // Speak task title when clicked
+            taskTitle.addEventListener('click', function() {
+                speakFrench(this.textContent);
             });
+            
+            // Initialize speech synthesis voices
+            if ('speechSynthesis' in window) {
+                // Wait for voices to load
+                let voices = window.speechSynthesis.getVoices();
+                if (voices.length === 0) {
+                    window.speechSynthesis.addEventListener('voiceschanged', () => {
+                        voices = window.speechSynthesis.getVoices();
+                    });
+                }
+            }
         }
 
         // Generate PDF report
@@ -1435,7 +1463,7 @@
             doc.setTextColor(0, 0, 0);
             doc.text(`Progression globale: ${answeredTasks}/${state.totalTasks} tâches`, 105, 135, { align: 'center' });
             
-            // Recommendations
+            // Recommendations in French
             doc.setFontSize(14);
             doc.setTextColor(192, 0, 0);
             doc.text("Recommandations:", 20, 155);
@@ -1466,7 +1494,7 @@
                 doc.text(`• ${rec}`, 30, 165 + (index * 7));
             });
             
-            // Learning tips
+            // Learning tips in French
             doc.setFontSize(14);
             doc.setTextColor(0, 32, 159);
             doc.text("Conseils pour mieux apprendre:", 20, 200);
@@ -1491,6 +1519,9 @@
             
             // Save the PDF
             doc.save(`rapport-apprentissage-${now.toISOString().split('T')[0]}.pdf`);
+            
+            // Speak confirmation in French
+            speakFrench("Rapport PDF généré avec succès");
         }
 
         // Initialize the app when DOM is loaded
