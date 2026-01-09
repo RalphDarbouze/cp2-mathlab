@@ -1,0 +1,1374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Monaie Haïtienne & Le Quadrillage</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        :root {
+            --primary: #00209f;
+            --secondary: #c00;
+            --light: #f5f5f5;
+            --dark: #333;
+            --success: #28a745;
+            --warning: #ffc107;
+            --border-radius: 8px;
+            --shadow: 0 4px 12px rgba(0,0,0,0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f0f8ff;
+            color: var(--dark);
+            line-height: 1.6;
+            padding: 0;
+            margin: 0;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary), #1a3cb8);
+            color: white;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow);
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .haiti-flag {
+            display: inline-flex;
+            margin: 0 15px;
+        }
+
+        .haiti-flag div {
+            width: 20px;
+            height: 20px;
+            margin: 0 2px;
+        }
+
+        .blue {
+            background-color: #00209f;
+        }
+
+        .red {
+            background-color: #c00;
+        }
+
+        .main-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .lesson-section {
+            flex: 1;
+            min-width: 300px;
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 25px;
+            box-shadow: var(--shadow);
+        }
+
+        .lesson-section h2 {
+            color: var(--primary);
+            border-bottom: 3px solid var(--secondary);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
+        .lesson-content {
+            margin-bottom: 25px;
+        }
+
+        .key-concept {
+            background-color: #eef5ff;
+            border-left: 5px solid var(--primary);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+        }
+
+        .concept-title {
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .interactive-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 5px;
+            margin: 20px auto;
+            max-width: 300px;
+        }
+
+        .grid-cell {
+            aspect-ratio: 1/1;
+            border: 1px solid #aaa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            cursor: pointer;
+            transition: var(--transition);
+            background-color: white;
+        }
+
+        .grid-cell:hover {
+            background-color: #e6f0ff;
+        }
+
+        .grid-cell.selected {
+            background-color: #b3d1ff;
+            border-color: var(--primary);
+        }
+
+        .grid-cell.correct {
+            background-color: #d4edda;
+            border-color: var(--success);
+        }
+
+        .grid-cell.incorrect {
+            background-color: #f8d7da;
+            border-color: #dc3545;
+        }
+
+        .coordinates-display {
+            background-color: #f8f9fa;
+            padding: 10px;
+            border-radius: var(--border-radius);
+            margin-top: 15px;
+            text-align: center;
+            font-family: monospace;
+            font-size: 1.2rem;
+        }
+
+        .currency-display {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .currency-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px;
+            border-radius: var(--border-radius);
+            background-color: #f8f9fa;
+            width: 140px;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .currency-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+        }
+
+        .currency-img {
+            width: 100px;
+            height: 100px;
+            background-color: #f0f0f0;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+            overflow: hidden;
+            border: 3px solid #ddd;
+        }
+
+        .currency-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .currency-name {
+            font-weight: bold;
+            text-align: center;
+            margin-top: 5px;
+        }
+
+        .currency-value {
+            color: var(--primary);
+            font-size: 0.9rem;
+        }
+
+        .task-section {
+            flex: 2;
+            min-width: 300px;
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 25px;
+            box-shadow: var(--shadow);
+        }
+
+        .task-progress {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #eee;
+        }
+
+        .progress-bar {
+            height: 10px;
+            background-color: #e9ecef;
+            border-radius: 5px;
+            flex-grow: 1;
+            margin-right: 15px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background-color: var(--primary);
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+
+        .task-container {
+            min-height: 300px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: var(--border-radius);
+            margin-bottom: 20px;
+        }
+
+        .task-title {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+
+        .task-question {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .task-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .option {
+            padding: 12px 15px;
+            background-color: white;
+            border: 2px solid #ddd;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .option:hover {
+            border-color: var(--primary);
+            background-color: #f0f7ff;
+        }
+
+        .option.selected {
+            border-color: var(--primary);
+            background-color: #e6f0ff;
+        }
+
+        .option.correct {
+            border-color: var(--success);
+            background-color: #d4edda;
+        }
+
+        .option.incorrect {
+            border-color: #dc3545;
+            background-color: #f8d7da;
+        }
+
+        .task-controls {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-weight: bold;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #001a7a;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background-color: #5a6268;
+        }
+
+        .btn-success {
+            background-color: var(--success);
+            color: white;
+        }
+
+        .btn-success:hover {
+            background-color: #218838;
+        }
+
+        .btn-report {
+            background-color: var(--secondary);
+            color: white;
+            margin: 20px auto;
+            display: block;
+            font-size: 1.1rem;
+            padding: 15px 30px;
+        }
+
+        .btn-report:hover {
+            background-color: #a00;
+            transform: translateY(-2px);
+        }
+
+        .feedback {
+            padding: 15px;
+            border-radius: var(--border-radius);
+            margin-top: 20px;
+            display: none;
+        }
+
+        .feedback.correct {
+            background-color: #d4edda;
+            color: #155724;
+            border-left: 5px solid var(--success);
+            display: block;
+        }
+
+        .feedback.incorrect {
+            background-color: #f8d7da;
+            color: #721c24;
+            border-left: 5px solid #dc3545;
+            display: block;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 30px;
+            border-top: 1px solid #ddd;
+        }
+
+        .audio-player {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 10px 0;
+        }
+
+        .audio-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .audio-btn:hover {
+            background-color: #001a7a;
+            transform: scale(1.1);
+        }
+
+        .task-image {
+            max-width: 200px;
+            max-height: 150px;
+            margin: 15px auto;
+            display: block;
+            border-radius: var(--border-radius);
+            border: 3px solid #ddd;
+        }
+
+        .image-option {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .image-option img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: var(--border-radius);
+            border: 2px solid #ddd;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .main-content {
+                flex-direction: column;
+            }
+            
+            .interactive-grid {
+                grid-template-columns: repeat(4, 1fr);
+                max-width: 250px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .task-options {
+                grid-template-columns: 1fr;
+            }
+            
+            .btn {
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+            
+            .currency-item {
+                width: 120px;
+            }
+            
+            .currency-img {
+                width: 80px;
+                height: 80px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .lesson-section, .task-section {
+                padding: 15px;
+            }
+            
+            .interactive-grid {
+                grid-template-columns: repeat(3, 1fr);
+                max-width: 200px;
+            }
+            
+            .currency-item {
+                width: 100px;
+            }
+            
+            .currency-img {
+                width: 70px;
+                height: 70px;
+            }
+        }
+
+        .sound-icon {
+            cursor: pointer;
+            color: var(--primary);
+            margin-left: 10px;
+            font-size: 1.2rem;
+        }
+
+        .task-counter {
+            font-weight: bold;
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+
+        .score-display {
+            text-align: center;
+            font-size: 1.2rem;
+            margin: 10px 0;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .audio-instruction {
+            font-style: italic;
+            color: #666;
+            margin: 5px 0;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>La Monaie Haïtienne & Le Quadrillage <span class="haiti-flag"><div class="blue"></div><div class="red"></div></span></h1>
+            <div class="subtitle">Apprenez la monnaie haïtienne et le système de quadrillage avec 50 tâches interactives</div>
+        </header>
+
+        <div class="main-content">
+            <div class="lesson-section">
+                <h2>Leçons</h2>
+                
+                <div class="lesson-content">
+                    <h3>La Monaie Haïtienne <i class="fas fa-volume-up sound-icon" id="currencySound"></i></h3>
+                    <p class="audio-instruction">Cliquez sur l'icône pour entendre la prononciation</p>
+                    <p>La monnaie d'Haïti est la gourde (HTG). Elle est divisée en 100 centimes.</p>
+                    
+                    <div class="key-concept">
+                        <div class="concept-title">Billets et pièces courants :</div>
+                        <p>• Billets: 10, 25, 50, 100, 250, 500, 1000 gourdes</p>
+                        <p>• Pièces: 5, 10, 20, 50 centimes, 1 et 5 gourdes</p>
+                    </div>
+                    
+                    <div class="currency-display">
+                        <div class="currency-item" data-value="10" data-name="Dix gourdes" data-audio="10gourdes">
+                            <div class="currency-img">
+                                <img src="https://via.placeholder.com/100x100/00209F/FFFFFF?text=10+G" alt="10 gourdes" id="currency10">
+                            </div>
+                            <div class="currency-name">Dix gourdes</div>
+                            <div class="currency-value">HTG 10</div>
+                        </div>
+                        <div class="currency-item" data-value="50" data-name="Cinquante gourdes" data-audio="50gourdes">
+                            <div class="currency-img">
+                                <img src="https://via.placeholder.com/100x100/00209F/FFFFFF?text=50+G" alt="50 gourdes" id="currency50">
+                            </div>
+                            <div class="currency-name">Cinquante gourdes</div>
+                            <div class="currency-value">HTG 50</div>
+                        </div>
+                        <div class="currency-item" data-value="100" data-name="Cent gourdes" data-audio="100gourdes">
+                            <div class="currency-img">
+                                <img src="https://via.placeholder.com/100x100/C00/FFFFFF?text=100+G" alt="100 gourdes" id="currency100">
+                            </div>
+                            <div class="currency-name">Cent gourdes</div>
+                            <div class="currency-value">HTG 100</div>
+                        </div>
+                        <div class="currency-item" data-value="500" data-name="Cinq cents gourdes" data-audio="500gourdes">
+                            <div class="currency-img">
+                                <img src="https://via.placeholder.com/100x100/C00/FFFFFF?text=500+G" alt="500 gourdes" id="currency500">
+                            </div>
+                            <div class="currency-name">Cinq cents gourdes</div>
+                            <div class="currency-value">HTG 500</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="lesson-content">
+                    <h3>Le Quadrillage <i class="fas fa-volume-up sound-icon" id="gridSound"></i></h3>
+                    <p class="audio-instruction">Cliquez sur l'icône pour entendre l'explication</p>
+                    <div class="key-concept">
+                        <div class="concept-title">Notions clés :</div>
+                        <p>Le quadrillage est rempli de cases et est formé de lignes et de colonnes.</p>
+                        <p>Les colonnes sont en vertical et les lignes sont en horizontal.</p>
+                        <p>Pour identifier les cases, on utilise des parenthèses et des virgules.</p>
+                    </div>
+                    
+                    <p>Exemple: La case (2,3) est à l'intersection de la colonne 2 et la ligne 3.</p>
+                    
+                    <div class="interactive-grid" id="interactiveGrid">
+                        <!-- Grid cells will be generated by JavaScript -->
+                    </div>
+                    
+                    <div class="coordinates-display" id="coordinatesDisplay">
+                        Cliquez sur une case pour voir ses coordonnées
+                    </div>
+                    
+                    <div class="audio-player">
+                        <button class="audio-btn" id="playGridSound">
+                            <i class="fas fa-play"></i>
+                        </button>
+                        <span>Écouter l'explication du quadrillage</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="task-section">
+                <div class="task-progress">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <div class="task-counter" id="taskCounter">Tâche 1/50</div>
+                </div>
+                
+                <div class="score-display" id="scoreDisplay">Score: 0/0</div>
+                
+                <div class="task-container" id="taskContainer">
+                    <h3 class="task-title" id="taskTitle">Tâche 1: Identifier les lignes et colonnes</h3>
+                    <div class="task-question" id="taskQuestion">Dans un quadrillage, comment sont positionnées les colonnes?</div>
+                    
+                    <!-- Task image will be inserted here if needed -->
+                    <div id="taskImageContainer"></div>
+                    
+                    <div class="task-options" id="taskOptions">
+                        <!-- Options will be generated by JavaScript -->
+                    </div>
+                    
+                    <div class="task-controls">
+                        <button class="btn btn-secondary" id="prevBtn" disabled>
+                            <i class="fas fa-arrow-left"></i> Précédent
+                        </button>
+                        <button class="btn btn-primary" id="nextBtn">
+                            Suivant <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="feedback" id="feedback"></div>
+                </div>
+            </div>
+        </div>
+        
+        <button class="btn btn-report" id="reportBtn">
+            <i class="fas fa-file-pdf"></i> Générer Rapport PDF des Résultats
+        </button>
+
+        <footer>
+            <p>Application éducative pour apprendre La Monaie Haïtienne et Le Quadrillage</p>
+            <p>Conçu pour être entièrement responsive sur tous les appareils</p>
+        </footer>
+    </div>
+
+    <!-- Hidden audio elements -->
+    <audio id="audioCurrency" preload="auto">
+        <source src="https://assets.mixkit.co/sfx/preview/mixkit-coin-handling-1997.mp3" type="audio/mpeg">
+    </audio>
+    
+    <audio id="audioGrid" preload="auto">
+        <source src="https://assets.mixkit.co/sfx/preview/mixkit-game-ball-tap-2073.mp3" type="audio/mpeg">
+    </audio>
+    
+    <audio id="audioCorrect" preload="auto">
+        <source src="https://assets.mixkit.co/sfx/preview/mixkit-correct-answer-tone-2870.mp3" type="audio/mpeg">
+    </audio>
+    
+    <audio id="audioIncorrect" preload="auto">
+        <source src="https://assets.mixkit.co/sfx/preview/mixkit-wrong-answer-fail-notification-946.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        // App state
+        const state = {
+            currentTask: 1,
+            totalTasks: 50,
+            score: 0,
+            answers: new Array(50).fill(null),
+            tasks: [],
+            gridSize: 5,
+            selectedCell: null
+        };
+
+        // Initialize tasks with images and sounds
+        function initializeTasks() {
+            // Image URLs for tasks (using placeholder images that will work on GitHub)
+            const imageUrls = {
+                currency10: "https://via.placeholder.com/150x80/00209F/FFFFFF?text=10+Gourdes",
+                currency25: "https://via.placeholder.com/150x80/00209F/FFFFFF?text=25+Gourdes",
+                currency50: "https://via.placeholder.com/150x80/00209F/FFFFFF?text=50+Gourdes",
+                currency100: "https://via.placeholder.com/150x80/C00/FFFFFF?text=100+Gourdes",
+                currency250: "https://via.placeholder.com/150x80/C00/FFFFFF?text=250+Gourdes",
+                currency500: "https://via.placeholder.com/150x80/008000/FFFFFF?text=500+Gourdes",
+                grid1: "https://via.placeholder.com/150x150/CCCCCC/000000?text=Quadrillage",
+                grid2: "https://via.placeholder.com/150x150/CCCCCC/000000?text=(2,3)",
+                grid3: "https://via.placeholder.com/150x150/CCCCCC/000000?text=(4,1)",
+                grid4: "https://via.placeholder.com/150x150/CCCCCC/000000?text=(5,5)"
+            };
+
+            // Tasks for Haitian currency (20 tasks)
+            for (let i = 1; i <= 20; i++) {
+                let task = {};
+                task.id = i;
+                task.type = 'currency';
+                
+                if (i <= 5) {
+                    // Basic currency identification with images
+                    const values = [10, 25, 50, 100, 250];
+                    const names = ["dix gourdes", "vingt-cinq gourdes", "cinquante gourdes", "cent gourdes", "deux cent cinquante gourdes"];
+                    const images = ["currency10", "currency25", "currency50", "currency100", "currency250"];
+                    const idx = i - 1;
+                    
+                    task.question = `Quelle est la valeur de ce billet?`;
+                    task.image = imageUrls[images[idx]];
+                    task.options = [
+                        `${values[idx]} HTG`,
+                        `${values[(idx+1)%5]} HTG`,
+                        `${values[(idx+2)%5]} HTG`,
+                        `${values[(idx+3)%5]} HTG`
+                    ];
+                    task.correct = 0;
+                    task.explanation = `Le billet de ${names[idx]} a une valeur de ${values[idx]} gourdes (HTG).`;
+                } else if (i <= 10) {
+                    // Currency conversion
+                    const conversions = [
+                        {amount: 100, unit: "gourdes", result: 100, image: "currency100"},
+                        {amount: 250, unit: "gourdes", result: 250, image: "currency250"},
+                        {amount: 5, unit: "gourdes", result: 5, image: "currency10"},
+                        {amount: 50, unit: "centimes", result: 0.5, image: "currency50"},
+                        {amount: 100, unit: "centimes", result: 1, image: "currency100"}
+                    ];
+                    const idx = i - 6;
+                    
+                    task.question = `Combien de gourdes font ${conversions[idx].amount} ${conversions[idx].unit}?`;
+                    task.image = imageUrls[conversions[idx].image];
+                    task.options = [
+                        `${conversions[idx].result} HTG`,
+                        `${conversions[idx].result * 10} HTG`,
+                        `${conversions[idx].result / 10} HTG`,
+                        `${conversions[idx].result * 5} HTG`
+                    ];
+                    task.correct = 0;
+                    task.explanation = `${conversions[idx].amount} ${conversions[idx].unit} = ${conversions[idx].result} gourdes.`;
+                } else if (i <= 15) {
+                    // Currency counting with images
+                    const bills = [
+                        {ten: 2, fifty: 1, total: 70, image1: "currency10", image2: "currency50"},
+                        {ten: 3, fifty: 0, total: 30, image1: "currency10", image2: "currency10"},
+                        {ten: 0, fifty: 2, total: 100, image1: "currency50", image2: "currency50"},
+                        {ten: 1, fifty: 3, total: 160, image1: "currency10", image2: "currency50"},
+                        {ten: 4, fifty: 2, total: 140, image1: "currency10", image2: "currency50"}
+                    ];
+                    const idx = i - 11;
+                    
+                    task.question = `Si vous avez ces billets, combien d'argent avez-vous en total?`;
+                    task.image = imageUrls[bills[idx].image1];
+                    task.secondImage = imageUrls[bills[idx].image2];
+                    task.options = [
+                        `${bills[idx].total} HTG`,
+                        `${bills[idx].total + 10} HTG`,
+                        `${bills[idx].total - 10} HTG`,
+                        `${bills[idx].total * 2} HTG`
+                    ];
+                    task.correct = 0;
+                    task.explanation = `(${bills[idx].ten} × 10) + (${bills[idx].fifty} × 50) = ${bills[idx].total} gourdes.`;
+                } else {
+                    // Currency comparison with images
+                    const comparisons = [
+                        {a: "50 gourdes", b: "500 gourdes", larger: "500 gourdes", imageA: "currency50", imageB: "currency500"},
+                        {a: "100 gourdes", b: "1 gourde", larger: "100 gourdes", imageA: "currency100", imageB: "currency10"},
+                        {a: "25 gourdes", b: "250 gourdes", larger: "250 gourdes", imageA: "currency25", imageB: "currency250"},
+                        {a: "10 gourdes", b: "100 centimes", equal: true, imageA: "currency10", imageB: "currency100"},
+                        {a: "5 gourdes", b: "500 centimes", equal: true, imageA: "currency10", imageB: "currency500"}
+                    ];
+                    const idx = i - 16;
+                    
+                    if (comparisons[idx].equal) {
+                        task.question = `Comparer ces deux valeurs:`;
+                        task.image = imageUrls[comparisons[idx].imageA];
+                        task.secondImage = imageUrls[comparisons[idx].imageB];
+                        task.options = [
+                            "Ils sont égaux",
+                            `${comparisons[idx].a} est plus grand`,
+                            `${comparisons[idx].b} est plus grand`,
+                            "On ne peut pas comparer"
+                        ];
+                        task.correct = 0;
+                        task.explanation = `1 gourde = 100 centimes, donc ${comparisons[idx].a} = ${comparisons[idx].b}.`;
+                    } else {
+                        task.question = `Lequel est le plus grand?`;
+                        task.image = imageUrls[comparisons[idx].imageA];
+                        task.secondImage = imageUrls[comparisons[idx].imageB];
+                        task.options = [
+                            comparisons[idx].larger,
+                            comparisons[idx].a === comparisons[idx].larger ? comparisons[idx].b : comparisons[idx].a,
+                            "Ils sont égaux",
+                            "On ne peut pas comparer"
+                        ];
+                        task.correct = 0;
+                        task.explanation = `${comparisons[idx].larger} a une valeur plus grande.`;
+                    }
+                }
+                
+                state.tasks.push(task);
+            }
+            
+            // Tasks for grid system (30 tasks)
+            for (let i = 21; i <= 50; i++) {
+                let task = {};
+                task.id = i;
+                task.type = 'grid';
+                
+                if (i <= 30) {
+                    // Basic grid concepts with images
+                    const concepts = [
+                        {q: "Comment appelle-t-on les lignes verticales dans un quadrillage?", a: "Colonnes", options: ["Colonnes", "Lignes", "Diagonales", "Axe"], image: "grid1"},
+                        {q: "Comment appelle-t-on les lignes horizontales dans un quadrillage?", a: "Lignes", options: ["Lignes", "Colonnes", "Diagonales", "Axe"], image: "grid1"},
+                        {q: "Quel symbole utilise-t-on pour identifier une case dans un quadrillage?", a: "Parenthèses et virgules", options: ["Parenthèses et virgules", "Crochets et points", "Accolades et tirets", "Guillemets et slash"], image: "grid2"},
+                        {q: "Que représente (3,4) dans un quadrillage?", a: "Colonne 3, Ligne 4", options: ["Colonne 3, Ligne 4", "Ligne 3, Colonne 4", "Case à 3 lignes et 4 colonnes", "Case diagonale"], image: "grid2"},
+                        {q: "Combien de cases dans un quadrillage de 5 lignes et 5 colonnes?", a: "25", options: ["25", "10", "5", "50"], image: "grid1"},
+                        {q: "Dans (2,7), quel est le numéro de colonne?", a: "2", options: ["2", "7", "14", "5"], image: "grid3"},
+                        {q: "Dans (5,3), quel est le numéro de ligne?", a: "3", options: ["3", "5", "15", "8"], image: "grid3"},
+                        {q: "Quelle case est à gauche de (4,2)?", a: "(3,2)", options: ["(3,2)", "(4,1)", "(5,2)", "(4,3)"], image: "grid4"},
+                        {q: "Quelle case est en dessous de (3,5)?", a: "(3,6)", options: ["(3,6)", "(4,5)", "(2,5)", "(3,4)"], image: "grid4"},
+                        {q: "Que faut-il connaître pour identifier une case?", a: "Sa colonne et sa ligne", options: ["Sa colonne et sa ligne", "Sa couleur", "Sa taille", "Son contenu"], image: "grid1"}
+                    ];
+                    const idx = i - 21;
+                    
+                    task.question = concepts[idx].q;
+                    task.image = imageUrls[concepts[idx].image];
+                    task.options = [...concepts[idx].options];
+                    task.correct = task.options.indexOf(concepts[idx].a);
+                    task.explanation = `La réponse correcte est: "${concepts[idx].a}".`;
+                } else if (i <= 40) {
+                    // Coordinate identification with grid images
+                    const coords = [
+                        {coord: "(1,1)", desc: "première colonne, première ligne", image: "grid1"},
+                        {coord: "(3,2)", desc: "troisième colonne, deuxième ligne", image: "grid2"},
+                        {coord: "(5,4)", desc: "cinquième colonne, quatrième ligne", image: "grid4"},
+                        {coord: "(2,5)", desc: "deuxième colonne, cinquième ligne", image: "grid3"},
+                        {coord: "(4,3)", desc: "quatrième colonne, troisième ligne", image: "grid2"},
+                        {coord: "(1,4)", desc: "première colonne, quatrième ligne", image: "grid1"},
+                        {coord: "(3,5)", desc: "troisième colonne, cinquième ligne", image: "grid3"},
+                        {coord: "(5,1)", desc: "cinquième colonne, première ligne", image: "grid4"},
+                        {coord: "(2,2)", desc: "deuxième colonne, deuxième ligne", image: "grid2"},
+                        {coord: "(4,4)", desc: "quatrième colonne, quatrième ligne", image: "grid4"}
+                    ];
+                    const idx = i - 31;
+                    
+                    task.question = `Où se trouve la case ${coords[idx].coord} dans ce quadrillage?`;
+                    task.image = imageUrls[coords[idx].image];
+                    task.options = [
+                        coords[idx].desc,
+                        coords[(idx+1)%10].desc,
+                        coords[(idx+2)%10].desc,
+                        coords[(idx+3)%10].desc
+                    ];
+                    task.correct = 0;
+                    task.explanation = `La case ${coords[idx].coord} est à la ${coords[idx].desc}.`;
+                } else {
+                    // Grid problems with images
+                    const problems = [
+                        {q: "Si un quadrillage a 6 colonnes et 4 lignes, combien de cases a-t-il?", a: "24", options: ["24", "10", "20", "12"], image: "grid1"},
+                        {q: "Quelle est la case en haut à gauche d'un quadrillage?", a: "(1,1)", options: ["(1,1)", "(0,0)", "(1,0)", "(0,1)"], image: "grid1"},
+                        {q: "Que signifie (x,y) dans un quadrillage?", a: "Colonne x, Ligne y", options: ["Colonne x, Ligne y", "Ligne x, Colonne y", "Position x,y", "Coordonnées cartésiennes"], image: "grid2"},
+                        {q: "Quelle case est à droite de (3,3)?", a: "(4,3)", options: ["(4,3)", "(3,4)", "(2,3)", "(3,2)"], image: "grid3"},
+                        {q: "Quelle case est au-dessus de (2,4)?", a: "(2,3)", options: ["(2,3)", "(1,4)", "(3,4)", "(2,5)"], image: "grid3"},
+                        {q: "Comment appelle-t-on le point d'intersection d'une ligne et d'une colonne?", a: "Une case", options: ["Une case", "Un sommet", "Un nœud", "Une intersection"], image: "grid1"},
+                        {q: "Dans un quadrillage, les lignes sont numérotées de...", a: "haut en bas", options: ["haut en bas", "bas en haut", "gauche à droite", "aléatoirement"], image: "grid1"},
+                        {q: "Dans un quadrillage, les colonnes sont numérotées de...", a: "gauche à droite", options: ["gauche à droite", "droite à gauche", "haut en bas", "aléatoirement"], image: "grid1"},
+                        {q: "Si vous avez la case (7,2), combien de cases à gauche pour arriver à (4,2)?", a: "3", options: ["3", "5", "2", "4"], image: "grid4"},
+                        {q: "Quelle est la différence entre (5,3) et (3,5)?", a: "Colonne et ligne inversées", options: ["Colonne et ligne inversées", "Ce sont les mêmes", "L'une n'existe pas", "Distance de 2 cases"], image: "grid4"}
+                    ];
+                    const idx = i - 41;
+                    
+                    task.question = problems[idx].q;
+                    task.image = imageUrls[problems[idx].image];
+                    task.options = [...problems[idx].options];
+                    task.correct = task.options.indexOf(problems[idx].a);
+                    task.explanation = `La réponse correcte est: "${problems[idx].a}".`;
+                }
+                
+                state.tasks.push(task);
+            }
+        }
+
+        // DOM elements
+        const taskCounter = document.getElementById('taskCounter');
+        const progressFill = document.getElementById('progressFill');
+        const taskTitle = document.getElementById('taskTitle');
+        const taskQuestion = document.getElementById('taskQuestion');
+        const taskOptions = document.getElementById('taskOptions');
+        const nextBtn = document.getElementById('nextBtn');
+        const prevBtn = document.getElementById('prevBtn');
+        const feedback = document.getElementById('feedback');
+        const scoreDisplay = document.getElementById('scoreDisplay');
+        const reportBtn = document.getElementById('reportBtn');
+        const interactiveGrid = document.getElementById('interactiveGrid');
+        const coordinatesDisplay = document.getElementById('coordinatesDisplay');
+        const gridSound = document.getElementById('gridSound');
+        const currencySound = document.getElementById('currencySound');
+        const playGridSoundBtn = document.getElementById('playGridSound');
+        const taskImageContainer = document.getElementById('taskImageContainer');
+        
+        // Audio elements
+        const audioCurrency = document.getElementById('audioCurrency');
+        const audioGrid = document.getElementById('audioGrid');
+        const audioCorrect = document.getElementById('audioCorrect');
+        const audioIncorrect = document.getElementById('audioIncorrect');
+
+        // Initialize the app
+        function initApp() {
+            initializeTasks();
+            createInteractiveGrid();
+            loadTask(state.currentTask);
+            updateProgress();
+            setupEventListeners();
+        }
+
+        // Create interactive grid
+        function createInteractiveGrid() {
+            interactiveGrid.innerHTML = '';
+            
+            for (let row = 1; row <= state.gridSize; row++) {
+                for (let col = 1; col <= state.gridSize; col++) {
+                    const cell = document.createElement('div');
+                    cell.className = 'grid-cell';
+                    cell.dataset.row = row;
+                    cell.dataset.col = col;
+                    cell.textContent = `(${col},${row})`;
+                    
+                    cell.addEventListener('click', () => {
+                        // Reset previously selected cell
+                        if (state.selectedCell) {
+                            state.selectedCell.classList.remove('selected');
+                        }
+                        
+                        // Select new cell
+                        cell.classList.add('selected');
+                        state.selectedCell = cell;
+                        
+                        // Update coordinates display
+                        coordinatesDisplay.textContent = `Case sélectionnée: (${col},${row}) - Colonne ${col}, Ligne ${row}`;
+                        
+                        // Play grid sound
+                        playSound(audioGrid);
+                    });
+                    
+                    interactiveGrid.appendChild(cell);
+                }
+            }
+        }
+
+        // Play sound
+        function playSound(audioElement) {
+            audioElement.currentTime = 0;
+            audioElement.play().catch(e => console.log("Audio play failed:", e));
+        }
+
+        // Load a task
+        function loadTask(taskNumber) {
+            const task = state.tasks[taskNumber - 1];
+            
+            taskTitle.textContent = `Tâche ${taskNumber}: ${task.type === 'currency' ? 'La Monaie Haïtienne' : 'Le Quadrillage'}`;
+            taskQuestion.textContent = task.question;
+            taskCounter.textContent = `Tâche ${taskNumber}/${state.totalTasks}`;
+            
+            // Clear previous image
+            taskImageContainer.innerHTML = '';
+            
+            // Add image if task has one
+            if (task.image) {
+                const img = document.createElement('img');
+                img.src = task.image;
+                img.alt = "Image pour la tâche";
+                img.className = 'task-image';
+                taskImageContainer.appendChild(img);
+                
+                // Add second image if exists
+                if (task.secondImage) {
+                    const img2 = document.createElement('img');
+                    img2.src = task.secondImage;
+                    img2.alt = "Deuxième image pour la tâche";
+                    img2.className = 'task-image';
+                    taskImageContainer.appendChild(img2);
+                }
+            }
+            
+            // Clear previous options
+            taskOptions.innerHTML = '';
+            
+            // Create new options
+            task.options.forEach((option, index) => {
+                const optionElement = document.createElement('div');
+                optionElement.className = 'option';
+                
+                // Check if option is an image (contains .png, .jpg, etc.)
+                if (option.match(/\.(jpg|jpeg|png|gif|webp)$/i)) {
+                    const imageOptionDiv = document.createElement('div');
+                    imageOptionDiv.className = 'image-option';
+                    
+                    const img = document.createElement('img');
+                    img.src = option;
+                    img.alt = `Option ${index + 1}`;
+                    
+                    const text = document.createElement('span');
+                    text.textContent = `Option ${index + 1}`;
+                    
+                    imageOptionDiv.appendChild(img);
+                    imageOptionDiv.appendChild(text);
+                    optionElement.appendChild(imageOptionDiv);
+                } else {
+                    optionElement.textContent = option;
+                }
+                
+                optionElement.dataset.index = index;
+                
+                // Check if this option was previously selected
+                if (state.answers[taskNumber - 1] !== null && state.answers[taskNumber - 1] === index) {
+                    optionElement.classList.add('selected');
+                    
+                    // Show if correct/incorrect
+                    if (index === task.correct) {
+                        optionElement.classList.add('correct');
+                        feedback.textContent = `Correct! ${task.explanation}`;
+                        feedback.className = 'feedback correct';
+                    } else {
+                        optionElement.classList.add('incorrect');
+                        feedback.textContent = `Incorrect. ${task.explanation}`;
+                        feedback.className = 'feedback incorrect';
+                    }
+                }
+                
+                optionElement.addEventListener('click', () => {
+                    // If already answered, don't allow changes
+                    if (state.answers[taskNumber - 1] !== null) return;
+                    
+                    // Remove selected class from all options
+                    document.querySelectorAll('.option').forEach(opt => {
+                        opt.classList.remove('selected');
+                    });
+                    
+                    // Add selected class to clicked option
+                    optionElement.classList.add('selected');
+                    
+                    // Store answer
+                    state.answers[taskNumber - 1] = index;
+                    
+                    // Check if correct
+                    if (index === task.correct) {
+                        optionElement.classList.add('correct');
+                        state.score++;
+                        feedback.textContent = `Correct! ${task.explanation}`;
+                        feedback.className = 'feedback correct';
+                        playSound(audioCorrect);
+                    } else {
+                        optionElement.classList.add('incorrect');
+                        feedback.textContent = `Incorrect. ${task.explanation}`;
+                        feedback.className = 'feedback incorrect';
+                        playSound(audioIncorrect);
+                        
+                        // Highlight correct answer
+                        document.querySelector(`.option[data-index="${task.correct}"]`).classList.add('correct');
+                    }
+                    
+                    // Update score display
+                    updateScoreDisplay();
+                });
+                
+                taskOptions.appendChild(optionElement);
+            });
+            
+            // Clear feedback if no answer yet
+            if (state.answers[taskNumber - 1] === null) {
+                feedback.textContent = '';
+                feedback.className = 'feedback';
+            }
+            
+            // Update button states
+            prevBtn.disabled = taskNumber === 1;
+            nextBtn.textContent = taskNumber === state.totalTasks ? 'Terminer' : 'Suivant';
+            
+            // Update progress bar
+            updateProgress();
+        }
+
+        // Update progress bar
+        function updateProgress() {
+            const progressPercent = (state.currentTask / state.totalTasks) * 100;
+            progressFill.style.width = `${progressPercent}%`;
+        }
+
+        // Update score display
+        function updateScoreDisplay() {
+            const answeredTasks = state.answers.filter(answer => answer !== null).length;
+            scoreDisplay.textContent = `Score: ${state.score}/${answeredTasks} (${answeredTasks > 0 ? Math.round((state.score / answeredTasks) * 100) : 0}%)`;
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            // Next button
+            nextBtn.addEventListener('click', () => {
+                if (state.currentTask < state.totalTasks) {
+                    state.currentTask++;
+                    loadTask(state.currentTask);
+                } else {
+                    // Show completion message
+                    const finalScore = Math.round((state.score / state.totalTasks) * 100);
+                    alert(`Félicitations! Vous avez terminé toutes les tâches.\nScore final: ${state.score}/${state.totalTasks} (${finalScore}%)`);
+                }
+            });
+            
+            // Previous button
+            prevBtn.addEventListener('click', () => {
+                if (state.currentTask > 1) {
+                    state.currentTask--;
+                    loadTask(state.currentTask);
+                }
+            });
+            
+            // Currency item clicks
+            document.querySelectorAll('.currency-item').forEach(item => {
+                item.addEventListener('click', function() {
+                    const value = this.dataset.value;
+                    const name = this.dataset.name;
+                    const audioType = this.dataset.audio;
+                    
+                    // Visual feedback
+                    this.style.backgroundColor = '#e6f0ff';
+                    this.style.border = '2px solid var(--primary)';
+                    
+                    // Reset other items
+                    document.querySelectorAll('.currency-item').forEach(otherItem => {
+                        if (otherItem !== this) {
+                            otherItem.style.backgroundColor = '';
+                            otherItem.style.border = '';
+                        }
+                    });
+                    
+                    // Play currency sound
+                    playSound(audioCurrency);
+                    
+                    // Show message
+                    setTimeout(() => {
+                        alert(`${name} = ${value} gourdes haïtiennes (HTG)`);
+                    }, 300);
+                });
+            });
+            
+            // Currency sound button
+            currencySound.addEventListener('click', () => {
+                playSound(audioCurrency);
+                // Speak currency explanation
+                if ('speechSynthesis' in window) {
+                    const speech = new SpeechSynthesisUtterance();
+                    speech.text = "La monnaie d'Haïti est la gourde. Elle est divisée en 100 centimes. Les billets courants sont de 10, 25, 50, 100, 250, 500 et 1000 gourdes.";
+                    speech.lang = 'fr-FR';
+                    speech.rate = 0.9;
+                    window.speechSynthesis.speak(speech);
+                }
+            });
+            
+            // Grid sound buttons
+            gridSound.addEventListener('click', () => {
+                playSound(audioGrid);
+                // Speak grid explanation
+                if ('speechSynthesis' in window) {
+                    const speech = new SpeechSynthesisUtterance();
+                    speech.text = "Le quadrillage est formé de lignes et de colonnes. Les colonnes sont verticales et les lignes sont horizontales. Pour identifier une case, on utilise des parenthèses et des virgules, par exemple: (2,3)";
+                    speech.lang = 'fr-FR';
+                    speech.rate = 0.9;
+                    window.speechSynthesis.speak(speech);
+                }
+            });
+            
+            playGridSoundBtn.addEventListener('click', () => {
+                playSound(audioGrid);
+                // Speak grid explanation
+                if ('speechSynthesis' in window) {
+                    const speech = new SpeechSynthesisUtterance();
+                    speech.text = "Dans un quadrillage, les cases sont identifiées par leurs coordonnées. La première coordonnée est la colonne, la deuxième est la ligne. Par exemple, la case (3,2) est à la colonne 3, ligne 2.";
+                    speech.lang = 'fr-FR';
+                    speech.rate = 0.9;
+                    window.speechSynthesis.speak(speech);
+                }
+            });
+            
+            // Report button
+            reportBtn.addEventListener('click', generatePDFReport);
+            
+            // Keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowRight' || e.key === ' ') {
+                    // Next task
+                    if (state.currentTask < state.totalTasks) {
+                        nextBtn.click();
+                    }
+                } else if (e.key === 'ArrowLeft') {
+                    // Previous task
+                    if (state.currentTask > 1) {
+                        prevBtn.click();
+                    }
+                } else if (e.key === '1' || e.key === '2' || e.key === '3' || e.key === '4') {
+                    // Select option 1-4
+                    const optionIndex = parseInt(e.key) - 1;
+                    const options = document.querySelectorAll('.option');
+                    if (options[optionIndex]) {
+                        options[optionIndex].click();
+                    }
+                }
+            });
+            
+            // Add speech synthesis for accessibility
+            document.querySelectorAll('.task-question').forEach(element => {
+                element.addEventListener('click', function() {
+                    if ('speechSynthesis' in window) {
+                        const speech = new SpeechSynthesisUtterance();
+                        speech.text = this.textContent;
+                        speech.lang = 'fr-FR';
+                        speech.rate = 0.9;
+                        window.speechSynthesis.speak(speech);
+                    }
+                });
+            });
+        }
+
+        // Generate PDF report
+        async function generatePDFReport() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            
+            // Title
+            doc.setFontSize(20);
+            doc.setTextColor(0, 32, 159); // Haiti blue
+            doc.text("Rapport d'Apprentissage", 105, 20, { align: 'center' });
+            
+            doc.setFontSize(16);
+            doc.setTextColor(192, 0, 0); // Haiti red
+            doc.text("La Monaie Haïtienne & Le Quadrillage", 105, 30, { align: 'center' });
+            
+            // Date and score
+            doc.setFontSize(12);
+            doc.setTextColor(0, 0, 0);
+            const now = new Date();
+            doc.text(`Date: ${now.toLocaleDateString('fr-FR')}`, 20, 45);
+            
+            const answeredTasks = state.answers.filter(answer => answer !== null).length;
+            const correctPercentage = answeredTasks > 0 ? Math.round((state.score / answeredTasks) * 100) : 0;
+            doc.text(`Score: ${state.score}/${answeredTasks} (${correctPercentage}%)`, 20, 55);
+            
+            // Progress summary
+            doc.text(`Tâches complétées: ${answeredTasks}/${state.totalTasks}`, 20, 65);
+            
+            // Tasks by category
+            const currencyTasks = state.tasks.filter(task => task.type === 'currency').length;
+            const currencyAnswered = state.tasks.filter((task, index) => 
+                task.type === 'currency' && state.answers[index] !== null
+            ).length;
+            const currencyCorrect = state.tasks.filter((task, index) => 
+                task.type === 'currency' && state.answers[index] === task.correct
+            ).length;
+            
+            const gridTasks = state.tasks.filter(task => task.type === 'grid').length;
+            const gridAnswered = state.tasks.filter((task, index) => 
+                task.type === 'grid' && state.answers[index] !== null
+            ).length;
+            const gridCorrect = state.tasks.filter((task, index) => 
+                task.type === 'grid' && state.answers[index] === task.correct
+            ).length;
+            
+            // Category breakdown
+            doc.setFontSize(14);
+            doc.setTextColor(0, 32, 159);
+            doc.text("Résultats par catégorie:", 20, 85);
+            
+            doc.setFontSize(12);
+            doc.setTextColor(0, 0, 0);
+            const currencyPercent = currencyAnswered > 0 ? Math.round((currencyCorrect / currencyAnswered) * 100) : 0;
+            const gridPercent = gridAnswered > 0 ? Math.round((gridCorrect / gridAnswered) * 100) : 0;
+            
+            doc.text(`La Monaie Haïtienne: ${currencyCorrect}/${currencyAnswered} (${currencyPercent}%)`, 30, 100);
+            doc.text(`Le Quadrillage: ${gridCorrect}/${gridAnswered} (${gridPercent}%)`, 30, 110);
+            
+            // Visual progress chart
+            doc.setFillColor(230, 230, 230);
+            doc.rect(20, 120, 170, 10, 'F');
+            
+            doc.setFillColor(0, 32, 159);
+            const progressWidth = (answeredTasks / state.totalTasks) * 170;
+            doc.rect(20, 120, progressWidth, 10, 'F');
+            
+            doc.setTextColor(0, 0, 0);
+            doc.text(`Progression globale: ${answeredTasks}/${state.totalTasks} tâches`, 105, 135, { align: 'center' });
+            
+            // Recommendations
+            doc.setFontSize(14);
+            doc.setTextColor(192, 0, 0);
+            doc.text("Recommandations:", 20, 155);
+            
+            doc.setFontSize(11);
+            doc.setTextColor(0, 0, 0);
+            
+            let recommendations = [];
+            if (currencyPercent < 70 && currencyAnswered > 0) {
+                recommendations.push("Revoir les billets et pièces de la monnaie haïtienne");
+                recommendations.push("Pratiquer les conversions entre gourdes et centimes");
+            }
+            if (gridPercent < 70 && gridAnswered > 0) {
+                recommendations.push("Pratiquer davantage l'identification des cases dans un quadrillage");
+                recommendations.push("S'exercer à lire les coordonnées (colonne, ligne)");
+            }
+            if (recommendations.length === 0 && answeredTasks > 0) {
+                recommendations.push("Excellent travail! Continuez à pratiquer pour maintenir vos compétences.");
+            }
+            if (answeredTasks === 0) {
+                recommendations.push("Commencez par compléter quelques tâches pour obtenir des recommandations personnalisées.");
+            }
+            
+            recommendations.forEach((rec, index) => {
+                doc.text(`• ${rec}`, 30, 165 + (index * 7));
+            });
+            
+            // Learning tips
+            doc.setFontSize(14);
+            doc.setTextColor(0, 32, 159);
+            doc.text("Conseils pour mieux apprendre:", 20, 200);
+            
+            doc.setFontSize(11);
+            doc.setTextColor(0, 0, 0);
+            const tips = [
+                "Utilisez les fonctionnalités audio pour entendre les explications",
+                "Cliquez sur les images de billets pour en savoir plus",
+                "Interagissez avec le quadrillage pour comprendre les coordonnées",
+                "Revisez les notions clés dans la section 'Leçons'"
+            ];
+            
+            tips.forEach((tip, index) => {
+                doc.text(`• ${tip}`, 30, 210 + (index * 7));
+            });
+            
+            // Footer
+            doc.setFontSize(10);
+            doc.setTextColor(100, 100, 100);
+            doc.text("Application éducative - Conçu pour tous les appareils", 105, 280, { align: 'center' });
+            
+            // Save the PDF
+            doc.save(`rapport-apprentissage-${now.toISOString().split('T')[0]}.pdf`);
+        }
+
+        // Initialize the app when DOM is loaded
+        document.addEventListener('DOMContentLoaded', initApp);
+    </script>
+</body>
+</html>
